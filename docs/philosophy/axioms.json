@@ -1,0 +1,44 @@
+[
+  {
+    "type": "axiom",
+    "id": "AX-001",
+    "quote": "La inercia del nivel anterior aparece como fondo de ruido en el trabajo del nivel posterior; contenidos de la infravigilia irrumpen interfiriendo en el trabajo vigílico y a la inversa. Como ruido podemos también distinguir: climas emotivos, tensiones, y contenidos no correspondientes al trabajo del coordinador en ese momento.",
+    "source_metadata": {
+      "book": "Obras Completas II",
+      "chapter": "Psicología de la Imagen / Niveles de Conciencia",
+      "section": "Inercia y Ruido",
+      "paragraph": "Verificado en Silo_OC2_es.pdf",
+      "line_approx": "La inercia del nivel anterior aparece como fondo de ruido..."
+    },
+    "clinical_translation": "El enfermero arrastra 'ruido' (tensiones, climas emotivos, fatiga) de su vida personal o de pacientes anteriores. Si no se gestiona, este ruido interfiere en el trabajo vigílico (la atención clínica actual), generando iatrogenia por omisión, error de medicación o trato deshumanizado.",
+    "hard_constraint_in_code": "Invariante DDD: el Value Object RuidoCheck (adjunto a cada CareEvent) exige un campo tipado MentalClarity (1-10). Si MentalClarity < 7, el sistema bloquea la creación del CareEvent y registra el intento en cognitive_audit_log. El dominio cognitivo se implementa en pkg/cognitive."
+  },
+  {
+    "type": "axiom",
+    "id": "AX-002",
+    "quote": "TONOS. Las operaciones propias de cada nivel de trabajo pueden ser efectuadas con mayor o menor intensidad energética o tono.",
+    "source_metadata": {
+      "book": "Autoliberación",
+      "chapter": "Diccionario / TONOS",
+      "section": "Nivel de Trabajo",
+      "paragraph": "Verificado en Autoliberacion.pdf",
+      "line_approx": "TONOS. Las operaciones propias de cada nivel de trabajo..."
+    },
+    "clinical_translation": "La eficacia clínica (precisión en procedimientos, empatía, velocidad de reacción) no es una habilidad estática del enfermero, sino que está modulada por su 'nivel de trabajo' (estado cognitivo/emotivo) en ese momento exacto. Un profesional experto con un nivel de trabajo bajo cometerá errores de principiante.",
+    "hard_constraint_in_code": "Invariante DDD: el Value Object RuidoCheck (adjunto a cada CareEvent) exige un campo tipado WorkLevel (enum: LOW, MODERATE, HIGH). Si WorkLevel == LOW, el sistema bloquea la creación del CareEvent y sugiere reasignación o pausa. En MVP el gate aplica a todo CareEvent hasta existir catálogo de criticidad."
+  },
+  {
+    "type": "axiom",
+    "id": "AX-003",
+    "quote": "Tomando por base cualquier trabajo pretexto, pasemos al ejercicio específico de la atención simple. Se efectuará el trabajo pretexto respetando al máximo las correctas posiciones corporales aprendidas anteriormente, al tiempo que la atención esté dedicada exclusivamente al trabajo que se efectúe. Para que la atención esté siempre requerida, se evitarán los movimientos rítmicos o monótonos que llevarían a pensar en otras cosas.",
+    "source_metadata": {
+      "book": "Autoliberación",
+      "chapter": "Prácticas Sicofísicas / Perfeccionamiento atencional",
+      "section": "Serie 13. Atención simple",
+      "paragraph": "Verificado en Autoliberacion.pdf",
+      "line_approx": "Tomando por base cualquier trabajo pretexto..."
+    },
+    "clinical_translation": "La enfermería de precisión exige atención simple y dirigida en el procedimiento actual, evitando que la mente divague ('pensar en otras cosas') por la monotonía o el ritmo rutinario. Mantener la atención exclusivamente en la tarea y el paciente es lo opuesto a la pasividad perceptiva.",
+    "hard_constraint_in_code": "Invariante DDD: el Value Object RuidoCheck (adjunto a cada CareEvent) exige un campo tipado SimpleAttention (bool). Si SimpleAttention == false en la evaluación inicial del paciente, el sistema bloquea la firma del evento SNOMED hasta que se complete el campo AttentionalFinding."
+  }
+]
