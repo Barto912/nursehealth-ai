@@ -1,105 +1,119 @@
-# NurseHealth.ai
+# NurseHealth.ai | Pan-American Precision Home Healthcare & Biosecurity Platform
 
-**Enfermería domiciliaria de precisión con IA en el borde.**
+**Precision Home Nursing with Edge AI & Cryptographic Traceability.**
 
 [![CI](https://github.com/Barto912/nursehealth-ai/actions/workflows/main.yml/badge.svg)](https://github.com/Barto912/nursehealth-ai/actions)
 [![Docs](https://github.com/Barto912/nursehealth-ai/actions/workflows/auditoria-docs.yml/badge.svg)](https://github.com/Barto912/nursehealth-ai/actions)
 [![Seguridad](https://github.com/Barto912/nursehealth-ai/actions/workflows/seguridad-gitleaks.yml/badge.svg)](https://github.com/Barto912/nursehealth-ai/actions)
 
-> 🚧 **Estado del proyecto: INVESTIGACIÓN Y DISEÑO.**
-> Este repositorio no es un producto en producción.
-> El código y los documentos aquí presentes son experimentales
-> y su uso en entornos clínicos reales no está autorizado ni validado.
+🌐 **Read this documentation in other languages:**
+- [🇪🇸 Español (Operaciones Hispanoamérica)](./README_ES.md)
+- [🇧🇷 Português (Operações Brasil / ANVISA & SUS)](./README_PT.md)
 
-## El problema
+> 🚧 **Project Status: RESEARCH & ARCHITECTURAL DESIGN.**
+> This repository is not a production clinical product yet. The code and documentation presented here are experimental and their use in live clinical environments is neither authorized nor validated at this stage.
 
-Miles de pacientes crónicos en las Américas reciben atención
-domiciliaria sin trazabilidad real. Ese trabajo hoy es invisible:
-planillas de papel, medicamentos vencidos en el hogar, cadenas de
-custodia rotas y decisiones clínicas sin evidencia auditable.
+---
 
-**Piloto inicial:** 57 countries y barrios cerrados en Canning,
-Argentina.
-**Visión:** escalamiento regional a Chile, Uruguay, Colombia,
-México y Brasil con el mismo protocolo.
+## 🛡️ The Problem & Pan-American Health Security Doctrine
 
-## La solución
+Thousands of chronic patients across the Americas receive home healthcare without real traceability. Today, this critical work remains invisible: paper spreadsheets, expired medications inside homes, broken chains of custody, and clinical decisions lacking auditable evidence.
 
-Plataforma de enfermería de precisión extra-hospitalaria:
+Framed within the **Pan-American Health Security Doctrine**, **NurseHealth.ai** transforms decentralized home care into an auditable, zero-trust biosecurity grid built natively on the **Google Cloud Platform (GCP)** ecosystem.
 
-- **IA en el borde:** identificación de medicamentos en el
-  dispositivo del enfermero, sin enviar datos del paciente a la nube.
-- **Cadena de custodia criptográfica:** cada evento sellado con
-  SHA-256 en almacenamiento append-only.
-- **Logística inversa farmacéutica:** retiro domiciliario de
-  medicamentos vencidos con trazabilidad hasta disposición final.
-- **Fail-close por diseño:** ante la duda, el sistema bloquea y
-  escala a autoridad humana. Nunca improvisa.
+* **Initial Pilot:** 57 gated communities (*countries y barrios cerrados*) in Canning, Buenos Aires, Argentina.
+* **Continental Vision:** Regional scaling across Chile, Uruguay, Colombia, Mexico, Brazil (SUS/ANVISA), and the United States under a unified cryptographic and clinical protocol.
 
-**Lema:** el criterio es humano, la trazabilidad es del sistema.
+---
 
-**Tesis de plataforma:** enfermería de precisión con soporte de IA que
-convierte el trabajo autónomo calificado en carrera profesional:
-formación continua, reputación verificable y dignidad económica
-para los cuidadores de las Américas.
+## 💡 The Solution
 
-## Arquitectura
+An extra-hospital precision nursing and pharmaceutical reverse logistics platform:
 
-```text
-Pixel 11 Pro (edge AI, TensorFlow Lite)
-        |
-Cloud Run (Go, API REST, event sourcing)
-        |
-Cloud SQL (PostgreSQL, event store)
-        |
-Google Healthcare API (FHIR R4, detras de ACL)
-```
+- **Hybrid Edge-to-Cloud AI:** Medication identification and clinical triage directly on the nurse's device (**Google Pixel 11 Pro**), without exposing raw patient PII to the cloud.
+- **Cryptographic Chain of Custody:** Every clinical event and sample movement is sealed with **SHA-256** in an append-only Event Store.
+- **Pharmaceutical Reverse Logistics:** Home collection of expired or unused medications with end-to-end traceability up to final bio-safe disposal.
+- **Fail-Close by Design:** When in doubt, the deterministic Go engine blocks execution and escalates to a human medical authority. It never improvises.
 
-## Stack técnico
+> **Motto:** *Judgment is human; traceability belongs to the system.*
 
-| Capa | Tecnología |
-| --- | --- |
-| Backend | Go en Cloud Run |
-| Frontend | React Native con Expo |
-| Base de datos | PostgreSQL en Cloud SQL |
-| IA en el borde | TensorFlow Lite en Pixel 11 Pro |
-| Interoperabilidad | FHIR R4 vía Google Healthcare API |
-| Infraestructura | Google Cloud Platform |
+**Platform Thesis:** AI-supported precision nursing that elevates skilled autonomous work into a verifiable professional career—enabling continuous education, auditable reputation, and economic dignity for caregivers across the Americas.
 
-## Estado actual
+---
 
-Diseño completado y documentado:
+## 🏗️ Technical Architecture & Hybrid AI Flow
 
-- Event Storming del MVP-0 con 14 hotspots resueltos.
-- Aggregate Boundaries v0.3 (reparación vs aceptación documentada).
-- Context Map con ACL para FHIR y Reference Model regulatorio.
-- Integración continua verde en cada commit.
+1. **Edge Node — Google Pixel 11 Pro:** Quantized MedGemma (2B/4B) on Tensor NPU + TFLite + Engram (SQLite/FTS5 local context store).
+2. **Zero-Trust Transport:** Pseudonymized, cryptographically signed clinical event stream.
+3. **Core Ingestion — Google Cloud Run:** 100% Go (Golang) Microservices, REST API, Deterministic Fail-Close Engine, and Event Sourcing.
+4. **Cloud AI Orchestration — Vertex AI:** MedGemma Maestro (7B/27B) + Google Harness² (*Propose-Probe-Compose* dynamic guardrails).
+5. **Immutable Audit Ledger — Cloud SQL:** PostgreSQL Append-Only SHA-256 Event Store.
+6. **Clinical Interoperability — Cloud Healthcare API:** HL7 FHIR R4 & SNOMED CT isolated behind a Domain-Driven Design Anti-Corruption Layer (ACL).
 
-En curso: implementación del MVP con créditos de
-Google for Startups Cloud Program.
+### Technical Stack
 
-## Gobernanza ética
+| Layer | Technology |
+| :--- | :--- |
+| **Backend Core** | 100% Go (Golang) on Google Cloud Run (Event Sourcing & Fail-Close Engine) |
+| **Frontend Mobile** | React Native with Expo |
+| **Edge AI (Device)** | Quantized MedGemma Small (2B/4B) & TensorFlow Lite on Google Pixel 11 Pro (Tensor NPU) |
+| **Cloud AI (GCP)** | MedGemma Maestro (7B/27B) on Vertex AI + Google Harness² guardrails |
+| **AI Governance & Memory** | Gentle-AI (ODD/RDD) + Engram (Local-first SQLite + FTS5 context store) |
+| **Database & Ledger** | PostgreSQL on Cloud SQL (Append-only SHA-256 Event Store) |
+| **Interoperability** | HL7 FHIR R4 & SNOMED CT via Google Cloud Healthcare API (behind DDD ACL) |
+| **Infrastructure** | Google Cloud Platform (GCP) |
 
-Principios no negociables del manifiesto del proyecto:
+---
 
-1. Dignidad sobre datos.
-2. Autonomía sobre automatización.
-3. Transparencia sobre caja negra.
-4. Cuidado sobre eficiencia.
-5. Presencia sobre conexión.
-6. Prevención sobre reacción.
-7. Formación sobre adoctrinamiento.
+## ⚖️ Multi-Jurisdictional Regulatory Alignment
 
-Los datos de pacientes solo se procesan seudonimizados.
-Ninguna decisión clínica es automatizada.
+Engineered from day one to satisfy hemispheric health security and data sovereignty standards:
+* 🇺🇸 **United States:** HIPAA, SOC 2 Type II, CISA security alignment, and NDAA compliance.
+* 🇧🇷 **Brazil:** LGPD, ANVISA (SaMD guidelines), and native interoperability readiness for **SUS (RNDS)**.
+* 🌎 **Hispanic America:** Local data privacy frameworks (Argentina Ley 25.326, Chile, Uruguay, Colombia, Mexico) and national Electronic Health Record standards.
 
-## Equipo
+---
 
-- **Barto** — Founder y product owner.
-- **Deivis** — Technical advisor (DDD, arquitectura event-driven).
-- **Gabriel** — Chief Medical Officer.
-- **Leonor** — Strategic advisor.
+## 📈 Current Status & Milestones
 
-## Licencia
+Architectural design completed and audited:
+- **Event Storming (MVP-0):** Completed with 14 critical clinical/operational hotspots resolved.
+- **Aggregate Boundaries v0.3:** Repair vs. acceptance patterns formally documented.
+- **DDD Context Map:** Anti-Corruption Layer (ACL) for FHIR R4 and regulatory Reference Model established.
+- **Continuous Integration:** Green CI/CD pipelines, automated documentation auditing, and `gitleaks` secret scanning on every commit.
 
-Propietario. Todos los derechos reservados.
+**In Progress:** MVP implementation and cloud AI orchestration applying for the **Google for Startups Cloud Program**.
+
+📂 **Detailed GCP Research Proposal:** Technical deep-dives are located in [`/docs/gcp-proposal/`](./docs/gcp-proposal/):
+1. [`01_architecture_overview.md`](./docs/gcp-proposal/01_architecture_overview.md)
+2. [`02_panamerican_security_and_compliance.md`](./docs/gcp-proposal/02_panamerican_security_and_compliance.md)
+3. [`03_edge_and_gentle_ai.md`](./docs/gcp-proposal/03_edge_and_gentle_ai.md)
+
+---
+
+## 🧭 Ethical Governance
+
+Non-negotiable principles from the project manifesto:
+
+1. **Dignity over data.**
+2. **Autonomy over automation.**
+3. **Transparency over black boxes.**
+4. **Care over efficiency.**
+5. **Presence over connection.**
+6. **Prevention over reaction.**
+7. **Education over indoctrination.**
+
+Patient data is processed strictly pseudonymized. No clinical decision is ever automated.
+
+---
+
+## 👥 Core Team
+
+- **Barto** — Founder & Product Owner.
+- **Leonor** — Strategic Advisor.
+
+---
+
+## 📄 License
+
+Proprietary. All rights reserved.
