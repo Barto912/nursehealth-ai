@@ -125,3 +125,34 @@
 2. Resolución de **H14** (semántica de `ResolverBloqueo`: reparación vs. aceptación documentada de excepción) antes de cerrar ADR-001.
 3. ADR-001 (aggregate boundaries), ADR-002 (operational evidence), ADR-003 (registros externos y offline).
 4. Architecture Gate E1.
+
+
+## Bounded Context: Cognitive Ergonomics (v0.2)
+
+### Responsabilidad
+Capturar el estado cognitivo del operador en el momento exacto del acto
+clínico y gatear la creación y firma de eventos clínicos.
+
+### Value Objects
+- `RuidoCheck`: snapshot efímero adjunto a cada CareEvent como
+  `CognitiveSnapshot`. Campos tipados: MentalClarity (1-10), WorkLevel
+  (enum), SimpleAttention (bool), AttentionalFinding (string).
+
+### Eventos de dominio (planificados, tarea posterior)
+- `CognitiveStateValidated`
+- `CareEventBlockedByCognitiveState`
+
+### Invariantes
+- I10: ningún CareEvent se crea sin RuidoCheck válido (AX-001, AX-002).
+- I11: ningún evento SNOMED se firma sin atención simple o hallazgo
+  atencional registrado (AX-003, Autoliberación Serie 13).
+
+### Relación con otros contextos
+- Upstream de Logística Inversa: sus gates condicionan la creación de
+  CareEvent.
+- Persistencia de auditoría: cognitive_audit_log (tabla inmutable,
+  implementación en tarea posterior).
+
+### Hotspots
+- H20: CERRADO. Cita AX-003 re-sourced y verificada en Autoliberacion.pdf
+  (Serie 13); pasaje de Silo_OC2 retirado del corpus.
