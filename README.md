@@ -107,6 +107,24 @@ Patient data is processed strictly pseudonymized. No clinical decision is ever a
 
 ---
 
+## 🧠 Philosophy of Care: The Human Firewall
+
+Precision nursing requires more than technical skill—it demands cognitive integrity. The **Human Firewall** (ADR-006) codifies three foundational axioms that gate every clinical event:
+
+- **AX-001 (Inertia and Noise):** Mental clarity as precondition. If `MentalClarity < 7`, the system blocks event creation and logs the attempt.
+- **AX-002 (Tones / Work Level):** Energetic tone modulates clinical efficacy. If `WorkLevel == LOW`, the system suggests reassignment or pause.
+- **AX-003 (Simple Attention):** Directed attention as condition for SNOMED signature. If `SimpleAttention == false`, the operator must record an `AttentionalFinding` before signing.
+
+These axioms are not aspirational—they are **domain invariants** enforced by the `RuidoCheck` Value Object with unit tests. A professional in unfit cognitive state cannot create or sign a clinical event: the system blocks and records.
+
+**Implementation:**
+
+- [Foundational Axioms](docs/philosophy/axioms.json) (AX-001 to AX-003)
+- [RuidoCheck Value Object](pkg/cognitive/ruido_check.go) (typed gates with tests)
+- [ADR-006: Human Firewall (MVP)](docs/architecture/decisions/ADR-006-humanistic-firewall-mvp.md)
+- [Context Map v0.2](docs/domain/context-map.md) (invariants I10, I11)
+
+---
 ## 👥 Core Team
 
 - **Barto** — Founder & Product Owner.
