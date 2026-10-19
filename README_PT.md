@@ -102,6 +102,25 @@ Os dados dos pacientes são processados de forma estritamente pseudonimizada. Ne
 
 ---
 
+## 🧠 Filosofia do Cuidado: O Firewall Humano
+
+A enfermagem de precisão exige mais do que habilidade técnica: requer integridade cognitiva. O **Firewall Humano** (ADR-006) codifica três axiomas fundacionais que condicionam cada evento clínico:
+
+- **AX-001 (Inércia e Ruído):** a clareza mental como precondição. Se `MentalClarity < 7`, o sistema bloqueia a criação do evento e registra a tentativa.
+- **AX-002 (Tons / nível de trabalho):** o tom energético modula a eficácia clínica. Se `WorkLevel == LOW`, o sistema sugere realocação ou pausa.
+- **AX-003 (Atenção simples):** a atenção dirigida como condição para assinar o evento SNOMED. Se `SimpleAttention == false`, o operador deve registrar um `AttentionalFinding` antes de assinar.
+
+Estes axiomas não são aspiracionais: são **invariantes de domínio** exigidas pelo Value Object `RuidoCheck` com testes unitários. Um profissional em estado cognitivo não apto não pode criar nem assinar um evento clínico: o sistema bloqueia e registra a tentativa.
+
+**Implementação:**
+
+- [Axiomas fundacionais](docs/philosophy/axioms.json) (AX-001 a AX-003)
+- [Value Object RuidoCheck](pkg/cognitive/ruido_check.go) (gates tipados com testes)
+- [ADR-006: Firewall Humano (MVP)](docs/architecture/decisions/ADR-006-humanistic-firewall-mvp.md)
+- [Context Map v0.2](docs/domain/context-map.md) (invariantes I10, I11)
+
+---
+
 ## 👥 Equipe Core
 
 - **Barto** — Founder & Product Owner.
