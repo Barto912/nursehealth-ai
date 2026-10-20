@@ -41,4 +41,80 @@
     "clinical_translation": "La enfermería de precisión exige atención simple y dirigida en el procedimiento actual, evitando que la mente divague ('pensar en otras cosas') por la monotonía o el ritmo rutinario. Mantener la atención exclusivamente en la tarea y el paciente es lo opuesto a la pasividad perceptiva.",
     "hard_constraint_in_code": "Invariante DDD: el Value Object RuidoCheck (adjunto a cada CareEvent) exige un campo tipado SimpleAttention (bool). Si SimpleAttention == false en la evaluación inicial del paciente, el sistema bloquea la firma del evento SNOMED hasta que se complete el campo AttentionalFinding."
   }
+  ,
+{
+  "type": "axiom",
+  "id": "AX-004",
+  "trilingual_keys": {
+    "EN": "Pain vs. Suffering Distinction",
+    "ES": "Distinción Dolor vs. Sufrimiento",
+    "PT": "Distinção Dor vs. Sofrimento"
+  },
+  "quote": "No cumplirás con tu misión si no pones tus fuerzas en vencer el dolor y el sufrimiento en aquellos que te rodean.",
+  "source_metadata": {
+    "book": "Obras Completas I",
+    "chapter": "Humanizar la Tierra / El Paisaje Interno",
+    "section": "Capítulo VII. El Jinete y su sombra",
+    "paragraph": "Verificado en Obras Completas I (Humanizar la Tierra)",
+    "line_approx": "No cumplirás con tu misión si no pones tus fuerzas...",
+    "verified": true
+  },
+  "clinical_translation": "El dolor físico y el sufrimiento existencial son experiencias distintas que exigen respuestas clínicas distintas. Si se detecta sufrimiento (desesperanza, angustia), el procedimiento no puede cerrarse sin una intervención de escucha activa documentada: cerrar sin escuchar es iatrogenia por omisión emocional.",
+  "fhir_r4_mapping": {
+    "resource": "Observation",
+    "category": "survey | mental-health",
+    "code_system": "SNOMED CT",
+    "description": "The system must distinguish an Observation of physical pain (e.g. SNOMED 22253000 - Pain) from one of existential suffering (e.g. SNOMED 248096005 - Hopelessness / Distress). If Suffering is detected, require an active-listening intervention before closing the procedure."
+  },
+  "hard_constraint_in_code": "Invariante DDD: el Value Object PatientContextCheck (pkg/triage) exige SufferingIndicator (bool). Si es true, bloquea el cierre del CareEvent hasta registrar un ActiveListeningNote con validación anti-gaming (>= 50 caracteres, sin whitespace-only, sin palabras genéricas); razón de bloqueo InsufficientActiveListening."
+},
+{
+  "type": "axiom",
+  "id": "AX-005",
+  "trilingual_keys": {
+    "EN": "Formation Landscape (Generational/Cultural Context)",
+    "ES": "Paisaje de Formación (Contexto Generacional/Cultural)",
+    "PT": "Paisagem de Formação (Contexto Geracional/Cultural)"
+  },
+  "quote": "Reconsideremos pues nuestro anterior estudio autobiográfico y veamos ahora el paisaje en el que nos formamos. No el paisaje de aquella época en general, sino el paisaje de nuestro medio inmediato.",
+  "source_metadata": {
+    "book": "Autoliberación",
+    "chapter": "Mejoramiento conductual / Autobiografía",
+    "section": "Lección 2. Paisaje de formación",
+    "paragraph": "Verificado en Autoliberacion.pdf",
+    "line_approx": "Reconsideremos pues nuestro anterior estudio autobiográfico...",
+    "verified": true
+  },
+  "clinical_translation": "La percepción de la enfermedad está condicionada por el contexto generacional y cultural en el que se formó el paciente. Sin ese contexto, el triage puede interpretar mal síntomas y prioridades: cuadros clínicos idénticos significan cosas distintas en paisajes de formación distintos.",
+  "fhir_r4_mapping": {
+    "resource": "Patient (Extension)",
+    "extension_url": "http://nursehealth.ai/fhir/StructureDefinition/formation-landscape",
+    "description": "Custom FHIR Patient extension capturing the generational and cultural context that conditions the patient's perception of illness."
+  },
+  "hard_constraint_in_code": "Invariante DDD: PatientContextCheck exige ContextualLandscape (enum: GENERATIONAL, CULTURAL, EMOTIONAL, UNKNOWN). Si permanece UNKNOWN tras el protocolo de escalación (2 intentos -> supervisor clínico), el sistema bloquea la firma SNOMED CT con razón ContextNotDeterminable en el tercer intento."
+},
+{
+  "type": "axiom",
+  "id": "AX-006",
+  "trilingual_keys": {
+    "EN": "Valid Action (Golden Rule / Ethical Confirmation)",
+    "ES": "Acción Válida (Regla de Oro / Confirmación Ética)",
+    "PT": "Ação Válida (Regra de Ouro / Confirmação Ética)"
+  },
+  "quote": "trata a los demás como quieres que te traten",
+  "source_metadata": {
+    "book": "Obras Completas I",
+    "chapter": "Humanizar la Tierra / La Mirada Interna",
+    "section": "Índice temático / Regla de Oro",
+    "paragraph": "Verificado en Obras Completas I (La Mirada Interna)",
+    "line_approx": "trata a los demás como quieres que te traten",
+    "verified": true
+  },
+  "clinical_translation": "Toda acción clínica debe poder ser confirmada éticamente por el operador: si no puede afirmar que trata al paciente como querría ser tratado, la acción no es válida y debe escalarse a supervisión antes de ejecutarse.",
+  "fhir_r4_mapping": {
+    "resource": "Provenance",
+    "description": "Every critical CareEvent must carry a FHIR Provenance resource including the EthicalConfirmation signature (operator's ethical consent that the action respects patient dignity)."
+  },
+  "hard_constraint_in_code": "Invariante DDD: PatientContextCheck exige EthicalConfirmation (bool). Si es false, el sistema emite un VerificationReceipt con Approved: false (Fail-Close) y escala a supervisión; el intento queda registrado en cognitive_audit_log."
+}
 ]
