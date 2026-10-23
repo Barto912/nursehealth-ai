@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"nursehealth-ai/pkg/triage"
+	"github.com/Barto912/nursehealth-ai/pkg/triage"
 )
 
 // DBExecutor abstracts the minimal SQL surface required by the audit
