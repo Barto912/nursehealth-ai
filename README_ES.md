@@ -131,3 +131,12 @@ Estos axiomas no son aspiracionales: son **invariantes de dominio** exigidas por
 ## 📄 Licencia
 
 Propietario. Todos los derechos reservados.
+## 🛡️ Arquitectura de Resiliencia Multi-Capa y Soberanía de Datos
+
+NurseHealth.ai opera bajo la **Doctrina de Seguridad Sanitaria de las Américas**, garantizando la continuidad clínica y el cumplimiento normativo en todo momento.
+
+- **Capa 0 (Intra-Regional):** Nuestra primera línea de defensa. Operamos con alta disponibilidad síncrona multi-zona en `southamerica-west1` (Chile), garantizando RPO=0 y RTO<60s para el piloto de Clínica Canning Health, cumpliendo con la **Ley 25.326 (Protección de Datos Personales)** y normativas de **ANMAT**.
+- **Fail-Close Inmutable (Invariantes I10/I11):** Ningún fallo de infraestructura habilita reintentos automáticos si los gates cognitivos del operador (`RuidoCheck`, AX-001 a AX-003) o del paciente (AX-004 a AX-006) han bloqueado la operación. El veto clínico es determinista y se registra de forma inmutable (append-only) en el ledger.
+- **Motivación Operativa:** Diseñado tras el incidente público de `europe-west2` (octubre 2026). Nuestra topología panamericana opera de forma soberana, sin dependencia de regiones externas, asegurando que la atención de enfermería de precisión nunca se detenga.
+
+*Para detalles técnicos de replicación cruzada y conmutación por error, consulte `docs/gcp-proposal/04_multiregion_dr_and_failover.md`.*

@@ -131,3 +131,12 @@ Estes axiomas não são aspiracionais: são **invariantes de domínio** exigidas
 ## 📄 Licença
 
 Proprietário. Todos os direitos reservados.
+## 🛡️ Arquitetura de Resiliência Multicamadas e Soberania de Dados
+
+O NurseHealth.ai opera sob a **Doutrina de Segurança Sanitária das Américas**, garantindo continuidade clínica e conformidade regulatória em todos os momentos.
+
+- **Camada 0 (Intra-Regional):** Nossa primeira linha de defesa. Operamos com alta disponibilidade síncrona multizona em `southamerica-east1` (São Paulo), garantindo RPO=0 e RTO<60s para a soberania de dados no Brasil, em estrita conformidade com a **LGPD (Lei Geral de Proteção de Dados)** e a **RDC 657/2022 da ANVISA** para SaMD.
+- **Fail-Close Imutável (Invariantes I10/I11):** Nenhuma falha de infraestrutura permite novas tentativas se os gates cognitivos do operador (`RuidoCheck`, AX-001 a AX-003) ou do paciente (AX-004 a AX-006) tiverem bloqueado a operação. O veto clínico é determinístico e registrado de forma imutável (append-only) no ledger.
+- **Motivação Operacional:** Projetado após o incidente público em `europe-west2` (outubro de 2026). Nossa topologia pan-americana opera de forma soberana, sem dependência de regiões externas.
+
+*Para detalhes técnicos de replicação entre regiões e failover, consulte `docs/gcp-proposal/04_multiregion_dr_and_failover.md`.*
