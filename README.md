@@ -135,3 +135,12 @@ These axioms are not aspirational—they are **domain invariants** enforced by t
 ## 📄 License
 
 Proprietary. All rights reserved.
+## 🛡️ Multi-Layer Resilience and Data Sovereignty Architecture
+
+NurseHealth.ai operates under the **Doctrine of Health Security of the Americas**, ensuring clinical continuity and regulatory compliance at all times.
+
+- **Layer 0 (Intra-Regional):** Our first line of defense. We operate with synchronous multi-zone high availability in `southamerica-west1` and `us-east1`, guaranteeing RPO=0 and RTO<60s. This design ensures strict adherence to **HIPAA**, **FDA SaMD** guidelines, and **SOC 2 Type II** standards.
+- **Immutable Fail-Close (Invariants I10/I11):** No infrastructure failure enables automatic retries if the operator's cognitive gates (`RuidoCheck`, AX-001 to AX-003) or patient gates (AX-004 to AX-006) have blocked the operation. Clinical vetoes are deterministic and recorded immutably (append-only) in the audit ledger.
+- **Operational Motivation:** Architected in response to the public `europe-west2` incident (October 2026). Our Pan-American topology operates sovereignly, with zero dependency on external regions, ensuring precision nursing tools never fail during critical care.
+
+*For technical details on cross-region replication and failover mechanisms, refer to `docs/gcp-proposal/04_multiregion_dr_and_failover.md`.*
