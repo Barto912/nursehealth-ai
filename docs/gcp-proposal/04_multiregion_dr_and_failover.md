@@ -7,6 +7,7 @@
 - **Confirmed database (Phase 1):** [Cloud SQL Enterprise Plus for PostgreSQL with Cross-Region DR Replica](https://docs.cloud.google.com/sql/docs/postgres/replication/cross-region-replicas) between `southamerica-west1` and `southamerica-east1`, to optimize Google for Startups Cloud Program credits
 - **Operational motivation:** public incident in `europe-west2` (London, October 2026) that affected payment systems in Europe; NurseHealth.ai had zero exposure in that region. The event motivated the formalization of Layer 0 and the containment cascade (section 7)
 - **Consensus record:** Argon (architectural gemelo) verdicts Q1-Q6 approved with corrections; Deivis (technical gemelo) evidence audit against `go.mod`, merged sources and CI (rules P-12, P-14, P-15)
+- **Resilience targets:** RPO = 0 seconds at the sovereign edge (Pixel 11 Pro with Titan M3 signed Event Sourcing), RTO < 15 seconds for cross-region failover (Layer 0 intra-regional + Layer 1 inter-regional cascade with deterministic Fail-Close).
 
 ## 1. Verified repository baseline and zero-friction guarantee
 

@@ -128,9 +128,6 @@ Estos axiomas no son aspiracionales: son **invariantes de dominio** exigidas por
 
 ---
 
-## 📄 Licencia
-
-Propietario. Todos los derechos reservados.
 ## 🛡️ Arquitectura de Resiliencia Multi-Capa y Soberanía de Datos
 
 NurseHealth.ai opera bajo la **Doctrina de Seguridad Sanitaria de las Américas**, garantizando la continuidad clínica y el cumplimiento normativo en todo momento.
@@ -140,3 +137,7 @@ NurseHealth.ai opera bajo la **Doctrina de Seguridad Sanitaria de las Américas*
 - **Motivación Operativa:** Diseñado tras el incidente público de `europe-west2` (octubre 2026). Nuestra topología panamericana opera de forma soberana, sin dependencia de regiones externas, asegurando que la atención de enfermería de precisión nunca se detenga.
 
 *Para detalles técnicos de replicación cruzada y conmutación por error, consulte `docs/gcp-proposal/04_multiregion_dr_and_failover.md`.*
+
+## 📄 Licencia
+
+Propietario. Todos los derechos reservados.

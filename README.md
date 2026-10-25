@@ -132,9 +132,6 @@ These axioms are not aspirational—they are **domain invariants** enforced by t
 
 ---
 
-## 📄 License
-
-Proprietary. All rights reserved.
 ## 🛡️ Multi-Layer Resilience and Data Sovereignty Architecture
 
 NurseHealth.ai operates under the **Doctrine of Health Security of the Americas**, ensuring clinical continuity and regulatory compliance at all times.
@@ -144,3 +141,7 @@ NurseHealth.ai operates under the **Doctrine of Health Security of the Americas*
 - **Operational Motivation:** Architected in response to the public `europe-west2` incident (October 2026). Our Pan-American topology operates sovereignly, with zero dependency on external regions, ensuring precision nursing tools never fail during critical care.
 
 *For technical details on cross-region replication and failover mechanisms, refer to `docs/gcp-proposal/04_multiregion_dr_and_failover.md`.*
+
+## 📜 License
+
+Proprietary. All rights reserved.
