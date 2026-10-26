@@ -5,18 +5,18 @@ import (
 	"database/sql"
 	"errors"
 	"testing"
+	"time"
 
 	"github.com/Barto912/nursehealth-ai/pkg/triage"
 )
 
-// fakeDBExecutor implementa DBExecutor con stdlib-only (sql.Result fake)
+// fakeDBExecutor implementa DBExecutor con stdlib-only
 type fakeDBExecutor struct {
 	executedQueries []string
 	executedArgs    [][]interface{}
 	execError       error
 }
 
-// fakeResult implementa sql.Result para tests sin driver real
 type fakeResult struct{}
 
 func (f fakeResult) LastInsertId() (int64, error) { return 0, nil }
@@ -31,6 +31,17 @@ func (f *fakeDBExecutor) ExecContext(ctx context.Context, query string, args ...
 	return fakeResult{}, nil
 }
 
+// fakeCognitiveEvent implementa triage.CognitiveEvent para tests
+type fakeCognitiveEvent struct {
+	eventName string
+	occurred  time.Time
+	careID    string
+}
+
+func (f fakeCognitiveEvent) EventName() string     { return f.eventName }
+func (f fakeCognitiveEvent) OccurredAt() time.Time { return f.occurred }
+func (f fakeCognitiveEvent) CareEventID() string   { return f.careID }
+
 func TestPostgresAuditRepository_Append(t *testing.T) {
 	tests := []struct {
 		name          string
@@ -41,27 +52,25 @@ func TestPostgresAuditRepository_Append(t *testing.T) {
 	}{
 		{
 			name: "successful append-only insert",
-			event: triage.CognitiveEvent{
-				ID:        "evt-123",
-				PatientID: "patient-456",
-				Reason:    "AX-001",
-				Timestamp: 1698777600,
+			event: fakeCognitiveEvent{
+				eventName: "RuidoCheckPassed",
+				occurred:  time.Unix(1698777600, 0),
+				careID:    "evt-123",
 			},
 			execError:     nil,
 			wantErr:       false,
-			wantQueryPart: "INSERT INTO audit_log",
+			wantQueryPart: "INSERT INTO cognitive_audit_log",
 		},
 		{
 			name: "database error propagates",
-			event: triage.CognitiveEvent{
-				ID:        "evt-789",
-				PatientID: "patient-012",
-				Reason:    "AX-002",
-				Timestamp: 1698777700,
+			event: fakeCognitiveEvent{
+				eventName: "RuidoCheckFailed",
+				occurred:  time.Unix(1698777700, 0),
+				careID:    "evt-789",
 			},
 			execError:     errors.New("connection refused"),
 			wantErr:       true,
-			wantQueryPart: "INSERT INTO audit_log",
+			wantQueryPart: "INSERT INTO cognitive_audit_log",
 		},
 	}
 
