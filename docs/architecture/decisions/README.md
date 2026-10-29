@@ -22,6 +22,7 @@ evaluadas, consecuencias y estado.
 | 005 | Encadenamiento Forense de Auditoría mediante prev_hash | Aceptado | [ADR-005-encadenamiento-forense-prev-hash.md](ADR-005-encadenamiento-forense-prev-hash.md) |
 | 006 | Human Firewall as Traceability Precondition (MVP) | Accepted | [ADR-006-humanistic-firewall-mvp.md](ADR-006-humanistic-firewall-mvp.md) |
 | 007 | FHIR R4 Extensions for Patient-Side Cognitive Gates (MVP) | Accepted | [ADR-007-fhir-extensions.md](ADR-007-fhir-extensions.md) |
+| 008 | Marco Técnico-Legal y Compliance por Diseño | Aceptado (Ref. Interna) | [ADR-008-legal-and-pharmaceutical-compliance.md](ADR-008-legal-and-pharmaceutical-compliance.md) |
 
 ## Relaciones entre ADRs
 
