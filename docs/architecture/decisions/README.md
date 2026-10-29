@@ -23,6 +23,7 @@ evaluadas, consecuencias y estado.
 | 006 | Human Firewall as Traceability Precondition (MVP) | Accepted | [ADR-006-humanistic-firewall-mvp.md](ADR-006-humanistic-firewall-mvp.md) |
 | 007 | FHIR R4 Extensions for Patient-Side Cognitive Gates (MVP) | Accepted | [ADR-007-fhir-extensions.md](ADR-007-fhir-extensions.md) |
 | 008 | Marco Técnico-Legal y Compliance por Diseño | Aceptado (Ref. Interna) | [ADR-008-legal-and-pharmaceutical-compliance.md](ADR-008-legal-and-pharmaceutical-compliance.md) |
+| 009 | Estrategia de Auto-Mejora Recursiva para Modelos de Borde | Propuesto | [ADR-009-estrategia-auto-mejora-recursiva.md](ADR-009-estrategia-auto-mejora-recursiva.md) |
 
 ## Relaciones entre ADRs
 
