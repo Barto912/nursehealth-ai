@@ -1,0 +1,301 @@
+{
+  "meta": {
+    "document_title": "Gobernancia Ética de NurseHealth.ai — Axiomas Normativos",
+    "version": "1.0.0",
+    "status": "APPROVED_BY_ETHICS_COMMITTEE",
+    "ratification_date": "2026-11-01",
+    "repository_baseline": "commit 72fe634 (main)",
+    "sources": {
+      "primary": [
+        {
+          "document": "Carta Encíclica Magnifica Humanitas",
+          "author": "León XIV",
+          "date": "2026-05-15",
+          "axioms_covered": ["AX-007", "AX-008", "AX-009", "AX-010", "AX-011", "AX-012"]
+        },
+        {
+          "document": "Filosofía Humanista — Obras Completas",
+          "author": "Silo (Mario Rodríguez Cobos)",
+          "volumes": ["OC1 — La Mirada Interna", "OC2 — Psicología de la Imagen", "Autoliberación"],
+          "axioms_covered": ["AX-016"]
+        }
+      ],
+      "excluded_by_founder_decision": [
+        "Evangelium Vitae (Juan Pablo II, 1995) — Founder's decision 2026-11-01",
+        "Viktor Frankl — no ratificado",
+        "Jean Watson — no ratificado",
+        "Institute of Medicine (IOM) — no ratificado"
+      ]
+    },
+    "clinical_homologation": {
+      "authority": "Chief Medical & Clinical Informatics Officer (CMIO)",
+      "officer": "Dr. Daniel Rojo",
+      "scope": "Validación de taxonomía SNOMED CT, perfiles HL7 FHIR R4 y mapeos clínicos de los 7 axiomas",
+      "validation_date": "2026-11-01",
+      "status": "HOMOLOGATED"
+    },
+    "human_signatures": {
+      "founder_and_ethical_architect": {
+        "name": "Walter Bartolomé",
+        "role": "Founder, CEO & Chief Ethical Architect",
+        "authority": "Ratificación final de invariantes éticas y fuentes normativas",
+        "date": "2026-11-01"
+      },
+      "cmio": {
+        "name": "Dr. Daniel Rojo",
+        "role": "Chief Medical & Clinical Informatics Officer",
+        "authority": "Homologación clínica de taxonomías y mapeos FHIR/SNOMED CT",
+        "date": "2026-11-01"
+      },
+      "technical_project_manager": {
+        "name": "Leonor Figueroa",
+        "role": "Technical Project Manager & Operations Lead",
+        "authority": "Auditoría técnica humana y verificación contra baseline del repositorio",
+        "date": "2026-11-01"
+      }
+    },
+    "ai_ecosystem_registry": {
+      "current_model": "ARGON",
+      "ecosystem": "Google for Startups",
+      "status": "Herramienta subordinada sin personería jurídica ni capacidad de firma",
+      "evolution_path": "ARGON → CARBON (generaciones sucesivas programadas)",
+      "role": "Asistencia en estructuración de código, verificación terminológica y simulación de auditoría técnica",
+      "legal_note": "La AI del ecosistema NO firma documentos; solo los agentes humanos cualificados emiten firmas digitales vinculantes"
+    },
+    "regulatory_scope": {
+      "jurisdictions": ["Argentina", "Brasil", "Colombia", "México"],
+      "frameworks": [
+        {"country": "Argentina", "law": "Ley 25.326 (Protección de Datos Personales)"},
+        {"country": "Brasil", "law": "LGPD (Lei Geral de Proteção de Dados)"},
+        {"country": "Colombia", "law": "Ley 1581 de 2012 + Decreto 1377 de 2013"},
+        {"country": "México", "law": "LFPDPPP"}
+      ],
+      "health_agencies": ["ANMAT", "ANVISA", "INVIMA", "COFEPRIS"],
+      "note": "HIPAA se utiliza únicamente como referencia técnica de anonimización (Safe Harbor), NO como marco regulatorio principal"
+    },
+    "pending_deliverables": {
+      "team_credentials": {
+        "path": "docs/governance/TEAM_FIELD_EXPERIENCE_DOSSIER.pdf",
+        "status": "PENDING",
+        "blocking": false,
+        "description": "Dossier con CVs y credenciales de terreno de los firmantes humanos"
+      }
+    }
+  },
+  "axioms": [
+    {
+      "type": "ethical_axiom",
+      "id": "AX-007",
+      "layer": "Capa 1 — Transparencia, Responsabilidad y Trazabilidad",
+      "quote": "No podemos considerar a la IA como moralmente neutra. En realidad, todo artefacto técnico lleva consigo decisiones y prioridades: lo que mide, lo que ignora, lo que optimiza y el modo en que clasifica personas y situaciones.",
+      "source_metadata": {
+        "document": "Carta Encíclica Magnifica Humanitas",
+        "author": "León XIV",
+        "date": "2026-05-15",
+        "section": "104",
+        "verified_in_knowledge_base": true
+      },
+      "clinical_translation": "NurseHealth.ai documenta transparentemente en MODEL_CARD.md: (1) dataset de entrenamiento, (2) métricas de equidad optimizadas, (3) sesgos conocidos, (4) valores éticos codificados en algoritmos de triaje.",
+      "cmio_clinical_validation": {
+        "validator": "Dr. Daniel Rojo",
+        "status": "HOMOLOGATED",
+        "note": "Mapeo a métricas de fairness clínicamente relevantes para enfermería domiciliaria panamericana"
+      },
+      "hard_constraint_in_code": "Invariante DDD: El repositorio DEBE mantener un MODEL_CARD.md versionado, vinculado a cada inferencia vía extensión FHIR Device (ai-model-card).",
+      "fhir_r4_mapping": {
+        "resource": "Device (extension)",
+        "extension_url": "http://nursehealth.ai/fhir/StructureDefinition/ai-model-card",
+        "description": "Extensión FHIR que vincula cada inferencia de MedGemma 2B INT8 con su Model Card"
+      },
+      "trilingual_keys": {
+        "EN": "AI Is Not Morally Neutral",
+        "ES": "La IA No Es Moralmente Neutra",
+        "PT": "A IA Não É Moralmente Neutra"
+      }
+    },
+    {
+      "type": "ethical_axiom",
+      "id": "AX-008",
+      "layer": "Capa 1 — Transparencia, Responsabilidad y Trazabilidad",
+      "quote": "Para que la IA respete la dignidad humana y sirva realmente al bien común, es esencial que las responsabilidades estén claras en todas las etapas: desde quienes diseñan y programan los sistemas hasta quienes los utilizan.",
+      "source_metadata": {
+        "document": "Carta Encíclica Magnifica Humanitas",
+        "author": "León XIV",
+        "date": "2026-05-15",
+        "section": "105",
+        "verified_in_knowledge_base": true
+      },
+      "clinical_translation": "Cada actor en el flujo clínico tiene responsabilidades explícitas: desarrollador (Walter Bartolomé), enfermero (operador), médico supervisor (escalamiento), sistema (trazabilidad forense inmutable).",
+      "cmio_clinical_validation": {
+        "validator": "Dr. Daniel Rojo",
+        "status": "HOMOLOGATED",
+        "note": "Mapeo a FHIR Provenance con campos DeveloperVersion, OperatorID, SupervisorID obligatorios"
+      },
+      "hard_constraint_in_code": "Invariante DDD: Cada CareEvent incluye campos NOT NULL (DeveloperVersion, OperatorID, SupervisorID) mapeados a FHIR Provenance.",
+      "fhir_r4_mapping": {
+        "resource": "Provenance",
+        "description": "Recurso FHIR que documenta la cadena de responsabilidad de cada CareEvent"
+      },
+      "trilingual_keys": {
+        "EN": "Clear Responsibility in All Stages",
+        "ES": "Responsabilidad Clara en Todas las Etapas",
+        "PT": "Responsabilidade Clara em Todas as Etapas"
+      }
+    },
+    {
+      "type": "ethical_axiom",
+      "id": "AX-009",
+      "layer": "Capa 2 — Desarme de la IA y Soberanía Humana",
+      "quote": "No podemos limitarnos a invocar la moralización de la máquina, la denominada 'alineación' de la IA con los valores humanos, sin tener la valentía de poner una condición ulterior: la posibilidad de discutir el código ético que debe ser usado.",
+      "source_metadata": {
+        "document": "Carta Encíclica Magnifica Humanitas",
+        "author": "León XIV",
+        "date": "2026-05-15",
+        "section": "107",
+        "verified_in_knowledge_base": true
+      },
+      "clinical_translation": "Los axiomas éticos son documentados públicamente y sujetos a revisión por comités de ética de enfermería y medicina antes de implementación en código.",
+      "cmio_clinical_validation": {
+        "validator": "Dr. Daniel Rojo",
+        "status": "HOMOLOGATED",
+        "note": "Validación del estado APPROVED_BY_ETHICS_COMMITTEE como gate obligatorio en máquina de estados clínicos"
+      },
+      "hard_constraint_in_code": "Invariante DDD: Cada axioma en /docs/ethics/ tiene campo ReviewStatus (enum: DRAFT, UNDER_REVIEW, APPROVED_BY_ETHICS_COMMITTEE, REJECTED). Solo APPROVED puede ser referenciado por código.",
+      "fhir_r4_mapping": {
+        "resource": "DocumentReference",
+        "description": "Referencia FHIR que vincula cada axioma ético con su documento de revisión"
+      },
+      "trilingual_keys": {
+        "EN": "Discussable Ethical Code",
+        "ES": "Código Ético Discutible",
+        "PT": "Código Ético Discutível"
+      }
+    },
+    {
+      "type": "ethical_axiom",
+      "id": "AX-010",
+      "layer": "Capa 1 — Transparencia, Responsabilidad y Trazabilidad",
+      "quote": "Los desarrolladores llevan, por tanto, un importante peso ético y espiritual, ya que cada elección de proyecto expresa una visión de la humanidad.",
+      "source_metadata": {
+        "document": "Carta Encíclica Magnifica Humanitas",
+        "author": "León XIV",
+        "date": "2026-05-15",
+        "section": "111",
+        "verified_in_knowledge_base": true
+      },
+      "clinical_translation": "El equipo mantiene registro público de decisiones éticas vía Architecture Decision Records (ADRs) antes de implementar cambios en gobernanza.",
+      "cmio_clinical_validation": {
+        "validator": "Dr. Daniel Rojo",
+        "status": "HOMOLOGATED",
+        "note": "Gate CI/CD que bloquea compilación de /pkg/governance/ sin ADR aprobado"
+      },
+      "hard_constraint_in_code": "Invariante DDD: CI/CD exige ADR aprobado (ADR-010 o ADR-011) antes de compilar cambios en /pkg/governance/.",
+      "fhir_r4_mapping": {
+        "resource": "Organization (developer)",
+        "description": "Metadatos FHIR que identifican al desarrollador responsable"
+      },
+      "trilingual_keys": {
+        "EN": "Developer Ethical Responsibility",
+        "ES": "Responsabilidad Ética del Desarrollador",
+        "PT": "Responsabilidade Ética do Desenvolvedor"
+      }
+    },
+    {
+      "type": "ethical_axiom",
+      "id": "AX-011",
+      "layer": "Capa 1 — Transparencia, Responsabilidad y Trazabilidad",
+      "quote": "Cuando la decisión de atacar se automatiza o se vuelve opaca, aumenta el riesgo de que se pierda el sentido de la responsabilidad. Por eso, la cadena de responsabilidades debe seguir siendo identificable y verificable.",
+      "source_metadata": {
+        "document": "Carta Encíclica Magnifica Humanitas",
+        "author": "León XIV",
+        "date": "2026-05-15",
+        "section": "199",
+        "verified_in_knowledge_base": true
+      },
+      "clinical_translation": "Cada CareEvent genera un VerificationReceipt con hash SHA-256 que incluye ModelVersion, DatasetHash, OperatorID, SupervisorID, Timestamp, Signature, almacenado en registro forense inmutable.",
+      "cmio_clinical_validation": {
+        "validator": "Dr. Daniel Rojo",
+        "status": "HOMOLOGATED",
+        "note": "Convergencia en único registro forense inmutable SHA-256 con firma Titan M3"
+      },
+      "hard_constraint_in_code": "Invariante DDD: Cada CareEvent emite VerificationReceipt SHA-256 firmado por Titan M3, registrado en cognitive_audit_log (append-only).",
+      "fhir_r4_mapping": {
+        "resource": "AuditEvent (extended)",
+        "description": "Recurso FHIR AuditEvent con VerificationReceipt criptográfico"
+      },
+      "trilingual_keys": {
+        "EN": "Identifiable Responsibility Chain",
+        "ES": "Cadena de Responsabilidad Identificable",
+        "PT": "Cadeia de Responsabilidade Identificável"
+      }
+    },
+    {
+      "type": "ethical_axiom",
+      "id": "AX-012",
+      "layer": "Capa 2 — Desarme de la IA y Soberanía Humana",
+      "quote": "La decisión de emplear la fuerza letal no puede delegarse en procesos turbios o automatizados, sino que debe permanecer bajo un control humano efectivo, consciente y responsable.",
+      "source_metadata": {
+        "document": "Carta Encíclica Magnifica Humanitas",
+        "author": "León XIV",
+        "date": "2026-05-15",
+        "section": "200",
+        "verified_in_knowledge_base": true
+      },
+      "clinical_translation": "El sistema NUNCA delega decisiones irreversibles a la IA. MedGemma 2B INT8 solo SUGIERE; las decisiones IRREVERSIBLES requieren firma humana obligatoria de supervisor médico.",
+      "cmio_clinical_validation": {
+        "validator": "Dr. Daniel Rojo",
+        "status": "HOMOLOGATED",
+        "note": "Clasificación clínica de procedimientos en REVERSIBLE/IRREVERSIBLE validada por CMIO; IrreversibleDecisionGuard bloquea mecánicamente sin firma Practitioner"
+      },
+      "hard_constraint_in_code": "Invariante DDD: Aggregate CareEvent clasifica procedimientos en REVERSIBLE/IRREVERSIBLE. Si IRREVERSIBLE, requiere firma digital de supervisor humano (Practitioner). MedGemma 2B INT8 nunca puede ser agent.type == Device autorizador.",
+      "fhir_r4_mapping": {
+        "resource": "Provenance",
+        "description": "CareEvent irreversible con agent.type == Practitioner obligatorio, nunca Device"
+      },
+      "trilingual_keys": {
+        "EN": "No Delegation of Lethal Decisions (AI Disarmament)",
+        "ES": "No Delegación de Decisiones Letales (Desarme de la IA)",
+        "PT": "Não Delegação de Decisões Letais (Desarmar a IA)"
+      },
+      "implementation_note": "Este axioma implementa el concepto de 'Desarme de la IA': (1) no delegación de decisiones irreversibles, (2) trazabilidad forense inmutable, (3) control humano efectivo, (4) posibilidad de refutación por el operador."
+    },
+    {
+      "type": "ethical_axiom",
+      "id": "AX-016",
+      "layer": "Capa 2 — Desarme de la IA y Soberanía Humana",
+      "quote": "Nada por encima del hombre y ningún hombre por encima de otro.",
+      "source_metadata": {
+        "document": "Obras Completas — Documento del Movimiento Humanista",
+        "author": "Silo (Mario Rodríguez Cobos)",
+        "section": "Documento del Movimiento Humanista",
+        "page_reference": "OC1, pág. 414",
+        "verified_in_knowledge_base": true
+      },
+      "clinical_translation": "La IA nunca está 'por encima' del profesional de enfermería ni del paciente. El enfermero siempre puede refutar la sugerencia de la IA con registro forense inmutable de la discrepancia.",
+      "cmio_clinical_validation": {
+        "validator": "Dr. Daniel Rojo",
+        "status": "HOMOLOGATED",
+        "note": "Mecanismo Refutar Sugerencia obligatorio en UI; discrepancia sanitizada por Data Proxy y empaquetada como ATDP para RLHF clínico"
+      },
+      "hard_constraint_in_code": "Invariante DDD: Cada inferencia de MedGemma 2B INT8 incluye botón 'Refutar Sugerencia' obligatorio. Al activarse: (1) registra discrepancia en registro forense inmutable, (2) Data Proxy sanitiza PHI localmente, (3) empaqueta tupla ATDP [Contexto + Inferencia + Refutación].",
+      "fhir_r4_mapping": {
+        "resource": "Observation (extension)",
+        "extension_url": "http://nursehealth.ai/fhir/StructureDefinition/ai-disagreement",
+        "description": "Registra refutación humana de sugerencia de IA para dataset ATDP de RLHF"
+      },
+      "trilingual_keys": {
+        "EN": "Active Non-Violence (Human Sovereignty)",
+        "ES": "No-Violencia Activa (Soberanía Humana)",
+        "PT": "Não-Violência Ativa (Soberania Humana)"
+      }
+    }
+  ],
+  "integrity": {
+    "axiom_count": 7,
+    "expected_ids": ["AX-007", "AX-008", "AX-009", "AX-010", "AX-011", "AX-012", "AX-016"],
+    "excluded_ids": ["AX-013", "AX-014", "AX-015"],
+    "exclusion_reason": "Fuentes normativas no ratificadas por el Founder (Evangelium Vitae)",
+    "json_schema_version": "1.0.0",
+    "validation_command": "go run ./cmd/validate-axioms ./docs/ethics/governance-axioms.json"
+  }
+}
