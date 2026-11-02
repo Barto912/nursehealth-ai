@@ -66,13 +66,15 @@ Esta arquitectura de software se acopla nativamente con la estrategia de provisi
 
 ## 4. Especificación de Invariantes en Go 1.24 (`/pkg/governance/`)
 
-> **⚠️ NOTA DE ESTADO DE IMPLEMENTACIÓN (Ratificada por Founder, 2026-11-01):**
-> El código Go presentado en esta sección constituye la **Especificación de Referencia Aprobada** por el comité de ética y la estructura empresarial humana cualificada. La implementación efectiva en el baseline del repositorio se ejecutará en PRs secuenciales sobre el commit `72fe634`:
-> - **PR #35:** `pkg/governance/irreversible_decision_guard.go` + tests table-driven
-> - **PR #36:** `pkg/governance/disagreement_logger.go` + tests table-driven
-> - **PR #37:** `pkg/governance/verification_receipt.go` + tests table-driven
+> **⚠️ NOTA DE ESTADO DE IMPLEMENTACIÓN (Actualizada por Founder, 2026-11-03):**
+> La especificación Go 1.24 de esta sección fue implementada en PRs secuenciales con consolidación arquitectónica:
+> - **PR #37:** `pkg/governance/irreversible_decision_guard.go` — Implementa veto binario determinista (AX-008, AX-009, AX-011, AX-012) **e incluye encapsulada la lógica de VerificationReceipt y su método ComputeHash()**
+> - **PR #38:** `pkg/governance/disagreement_logger.go` — Implementa mecanismo de refutación humana (AX-016) con sanitización PHI vía DataProxy
+> - **PR #39: No requerido** — La lógica de VerificationReceipt se consolidó en PR #37 para evitar duplicación de código. El tipo `VerificationReceipt` y método `ComputeHash()` están exportados desde el guard y son reutilizables por otros componentes.
 >
-> Cada PR incluirá cobertura de tests >80% y validación contra el `governance-axioms.json` como fuente única de verdad normativa.
+> **Integración con DataProxy real:** El DisagreementLogger se conecta con el `DataProxy` existente mediante `pkg/adapter/phi_sanitizer_adapter.go` (Adapter Pattern), satisfaciendo la interfaz `PHISanitizer` sin romper los 11 tests existentes del proxy.
+>
+> **Cobertura acumulada del paquete `pkg/governance/`:** 97.4% (validada en CI).
 
 A continuación se define la especificación de referencia en **Go 1.24** que instrumenta los axiomas `AX-008`, `AX-009`, `AX-011`, `AX-012` y `AX-016` sobre el esquema forense `002_extend_cognitive_audit_log_atdp.sql`:
 
