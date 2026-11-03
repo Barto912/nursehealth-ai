@@ -1,143 +1,133 @@
-# NurseHealth.ai | Plataforma Pan-Americana de Enfermagem Domiciliar e Biossegurança
+# NurseHealth.ai | Plataforma Pan-Americana de Enfermagem Domiciliar de Precisão e Bioseguridade Verde
 
-**Enfermagem domiciliar de precisão com IA no edge e rastreabilidade criptográfica.**
+**Enfermagem Domiciliar de Precisão, IA Híbrida Edge-to-Cloud, Rastreabilidade Criptográfica e Logística Reversa Farmacêutica Verde.**
 
-[![CI](https://github.com/Barto912/nursehealth-ai/actions/workflows/main.yml/badge.svg)](https://github.com/Barto912/nursehealth-ai/actions)
-[![Docs](https://github.com/Barto912/nursehealth-ai/actions/workflows/auditoria-docs.yml/badge.svg)](https://github.com/Barto912/nursehealth-ai/actions)
-[![Seguridad](https://github.com/Barto912/nursehealth-ai/actions/workflows/seguridad-gitleaks.yml/badge.svg)](https://github.com/Barto912/nursehealth-ai/actions)
+🌐 **Ler esta documentação em outros idiomas:**
+- [🇺🇸 English (Official Google for Startups & Pan-American Architecture)](./README.md)
+- [🇪🇸 Español (Operaciones Hispanoamérica, ANMAT & Economía del Conocimiento)](./README_ES.md)
 
-🌐 **Leia esta documentação em outros idiomas:**
-- [🇺🇸 English (Official GCP Proposal)](./README.md)
-- [🇪🇸 Español (Operaciones Hispanoamérica)](./README_ES.md)
-
-> 🚧 **Status do projeto: PESQUISA E DESIGN ARQUITETÔNICO.**
-> Este repositório não é um produto clínico em produção. O código e os documentos aqui presentes são experimentais e seu uso em ambientes clínicos reais não está autorizado nem validado.
+> 🚧 **Status do Projeto: PESQUISA, P&D E VALIDAÇÃO ARQUITETURAL (`v0.4.0-research-proposal`).**  
+> Este repositório contém a arquitetura fundamental de P&D Experimental, o núcleo determinista em Go (`stdlib-only`) e os pipelines soberanos de destilação de IA da NurseHealth.ai. O implante clínico em ambiente real é estritamente controlado sob protocolos de validação institucional.
 
 ---
 
-## 🛡️ O Problema e a Doutrina de Segurança Sanitária
+## 1. Resumo Executivo e Doutrina de Segurança Sanitária das Américas
 
-Milhares de pacientes crônicos nas Américas recebem atendimento domiciliar sem rastreabilidade real. Hoje, esse trabalho é invisível: planilhas de papel, medicamentos vencidos em casa, quebra na cadeia de custódia e decisões clínicas sem evidências auditáveis.
+Milhares de pacientes crônicos e pós-agudos em todo o continente recebem assistência domiciliar sem rastreabilidade verificável. Hoje, o atendimento extra-hospitalar permanece fragmentado: registros em papel, cadeias de frio comprometidas, medicamentos vencidos acumulados nas residências e decisões clínicas sem respaldo auditável.
 
-Alinhada à **Doutrina de Segurança Sanitária das Américas**, a **NurseHealth.ai** transforma o cuidado descentralizado em uma rede de biossegurança auditável (Zero-Trust) construída nativamente no ecossistema do **Google Cloud Platform (GCP)**.
+Enquadrada na **Doutrina de Segurança Sanitária das Américas**, a **NurseHealth.ai** transforma a internação e enfermagem domiciliar descentralizada em uma rede auditável de bioseguridade Zero-Trust e logística reversa verde, construída nativamente sobre o ecossistema **Google Cloud Platform (GCP)** e **Google AI (Gemma / MedGemma)**.
 
-* **Piloto Inicial:** 57 condomínios fechados em Canning, Buenos Aires, Argentina.
-* **Visão Continental:** Escalonamento regional para o Brasil (SUS/ANVISA), Chile, Uruguai, Colômbia, México e Estados Unidos sob um protocolo clínico e criptográfico unificado.
-
----
-
-## 💡 A Solução
-
-Plataforma extra-hospitalar de enfermagem de precisão e logística reversa farmacêutica:
-
-- **IA Híbrida (Cloud/Edge):** Identificação de medicamentos e triagem clínica no dispositivo do enfermeiro (**Google Pixel 11 Pro**), sem expor dados sensíveis na nuvem.
-- **Cadeia de Custódia Criptográfica:** Cada evento clínico é selado com **SHA-256** em um armazenamento de eventos *append-only*.
-- **Logística Reversa Farmacêutica:** Coleta domiciliar de medicamentos vencidos com rastreabilidade de ponta a ponta até o descarte final bio-seguro.
-- **Fail-Close by Design:** Em caso de dúvida, o motor determinístico em Go bloqueia a execução e escala para uma autoridade médica humana. Nunca improvisa.
-
-> **Lema:** *O critério é humano, a rastreabilidade é do sistema.*
-
-**Tese da Plataforma:** Enfermagem de precisão com suporte de IA que eleva o trabalho autônomo qualificado a uma carreira profissional verificável: educação contínua, reputação auditável e dignidade econômica para os cuidadores das Américas.
+- **Piloto Clínico e Logístico Inicial:** Coorte de 100 casos distribuída em 57 condomínios fechados (*gated communities*) no **corredor Canning (Esteban Echeverría / Ezeiza), Província de Buenos Aires, Argentina**, preparando a expansão para o mercado brasileiro.
+- **Roteiro de Escala Continental:** Expansão faseada para o **Brasil (integração nativa com SUS/RNDS e conformidade ANVISA), Uruguai, Chile, Colômbia, México e Estados Unidos** sob um protocolo criptográfico e clínico unificado (HL7 FHIR R4, SNOMED CT e SHA-256).
+- **Tese da Plataforma:** *O julgamento é humano; a rastreabilidade pertence ao sistema.* A NurseHealth.ai eleva a enfermagem autônoma a uma carreira verificável, prevenindo a poluição farmacológica doméstica por meio de logística reversa eco-roteirizada.
 
 ---
 
-## 🏗️ Arquitetura Técnica e Fluxo de IA Híbrida
+## 2. Capacidades Nucleares e Solução de Bioseguridade Verde
 
-1. **Edge Node — Google Pixel 11 Pro:** MedGemma quantizado (2B/4B) no Tensor NPU + TFLite + Engram (armazenamento de contexto local SQLite/FTS5).
-2. **Transporte Zero-Trust:** Fluxo de eventos clínicos pseudonimizados e assinados criptograficamente.
-3. **Ingestão Core — Google Cloud Run:** Microsserviços 100% Go (Golang), REST API, Motor Fail-Close determinístico e Event Sourcing.
-4. **Orquestração Cloud AI — Vertex AI:** MedGemma Maestro (7B/27B) + Google Harness² (guardrails dinâmicos *Propose-Probe-Compose*).
-5. **Auditoria Imutável — Cloud SQL:** PostgreSQL Append-Only SHA-256 Event Store.
-6. **Interoperabilidade Clínica — Cloud Healthcare API:** HL7 FHIR R4 e SNOMED CT isolados atrás de uma camada anticorrupção (ACL) Domain-Driven Design.
+1. **IA Híbrida em Três Camadas: Edge-to-Workstation-to-Cloud (Ecossistema Gemma):**
+   * **Triage na Borda (Em Domicílio):** Verificação de medicamentos em tempo real, documentação de feridas e triagem clínica no dispositivo **Google Pixel 11 Pro** do profissional, sem expor dados de identificação (PII/PHI) brutos a redes externas.
+   * **Nódulo Local Soberano de P&D e Destilação:** **Workstation Certificada de Grau Militar (MIL-STD-810H)** *on-premise* dedicada à sanitização local de datasets, ajuste fino (QLoRA) e quantização INT8 de modelos **Google Gemma / MedGemma** sob estrita conformidade com leis nacionais de soberania de dados.
+   * **Orquestração em Nuvem:** Raciocínio clínico multimodal via **MedGemma Maestro (7B/27B) no GCP Vertex AI**, governado por guardrails clínicos dinâmicos.
+2. **Logística Reversa Farmacêutica Verde e IoT de Cadeia de Frio:**
+   * Coleta domiciliar de medicamentos vencidos, não utilizados ou termossensíveis (+2°C a +8°C) utilizando recipientes térmicos IoT (Bluetooth 6 / Thread).
+   * Rotas de coleta otimizadas para menor pegada de carbono por meio do **Google Maps Platform (Routes API Eco-Friendly Routing & Fleet Engine)**, garantindo a cadeia de custódia de ponta a ponta até a destinação final biosegura certificada.
+3. **Motor Determinista Fail-Close (`100% Go stdlib-only`):**
+   * Zero dependências externas no núcleo de decisão clínica. Ante qualquer discrepância lógica, discordância taxonómica SNOMED CT ou alerta de fadiga do operador, o motor bloqueia mecanicamente a execução, emite um recibo de rejeição assinado e escala para uma autoridade médica humana.
+4. **Livro-Razão de Auditoria Criptográfica Imutável:**
+   * Cada intervenção clínica, validação de portão cognitivo e transferência de custódia farmacêutica é selada com **SHA-256** em um armazenamento de eventos *append-only* (somente anexado).
 
-### Stack Técnico
+---
 
-| Camada | Tecnologia |
+## 3. Arquitetura Técnica de Três Camadas e Fluxo Híbrido de IA
+
+Para satisfazer simultaneamente a **escalabilidade em Google Cloud AI** e os **mandatos de Soberania de Dados**, a NurseHealth.ai opera em três níveis físicos:
+
+1. **Nível 1 — Nódulo Móvel na Borda (Google Pixel 11 Pro / Android 17):**
+   * Executa **MedGemma Small (2B/4B INT8)** quantizado via LiteRT na **NPU Google Tensor G6** (`< 300ms` de latência).
+   * O enclave de segurança por hardware **Titan M3** assina localmente os recibos `VerificationReceipt` usando SHA-256.
+   * **Armazenamento de Contexto Local:** Base SQLite + FTS5 local que despista e pseudonimiza dados sensíveis (PHI) na borda antes de qualquer transmissão.
+2. **Nível 2 — Nódulo Soberano de P&D e Destilação Air-Gapped (Workstation Certificada MIL-STD-810H):**
+   * Estação de trabalho dedicada *on-premise* (**Intel Xeon W ECC / NVIDIA RTX PRO, certificada MIL-STD-810G/H**) localizada na Província de Buenos Aires, Argentina.
+   * Executa localmente a destilação de modelos (QLoRA / quantização de pesos), geração de dados clínicos sintéticos e compilação/verificação determinista de binários em Go (`stdlib-only`) antes do seu despliegue na borda.
+3. **Nível 3 — Orquestração em Nuvem e Ledger Multirregião (Google Cloud Platform):**
+   * **Google Cloud Run:** Microsserviços 100% Go, API REST e ingestão por Event Sourcing.
+   * **Vertex AI:** MedGemma Maestro (7B/27B) com guardrails dinâmicos.
+   * **Cloud SQL Enterprise Plus:** Event Store PostgreSQL Append-Only com encadeamento SHA-256.
+   * **Cloud Healthcare API:** Interoperabilidade HL7 FHIR R4 e SNOMED CT isolada atrás de uma Camada Anticorrupção (ACL) baseada em Domain-Driven Design (DDD).
+   * **Google Maps Platform:** Routes API e Fleet Engine para despacho domiciliar de baixas emissões e coleta farmacêutica reversa.
+
+| Camada Arquitetural | Tecnologia e Padrões |
 | :--- | :--- |
-| **Backend Core** | 100% Go (Golang) no Google Cloud Run (Event Sourcing & Fail-Close) |
-| **Frontend Mobile** | React Native com Expo |
-| **Edge AI (Dispositivo)** | MedGemma Small (2B/4B) quantizado & TensorFlow Lite no Pixel 11 Pro |
-| **Cloud AI (GCP)** | MedGemma Maestro (7B/27B) no Vertex AI + Google Harness² |
-| **Governança IA & Memória** | Gentle-AI (ODD/RDD) + Engram (SQLite + FTS5 local-first) |
-| **Banco de Dados & Ledger** | PostgreSQL no Cloud SQL (Event Store SHA-256 Append-only) |
-| **Interoperabilidade** | HL7 FHIR R4 & SNOMED CT via Google Cloud Healthcare API |
-| **Infraestrutura** | Google Cloud Platform (GCP) |
+| **Backend Core** | 100% Go (núcleo `stdlib-only`) em **Google Cloud Run** (Event Sourcing e Motor Fail-Close) |
+| **Nódulo Local de P&D** | **Workstation Certificada MIL-STD-810H** (Intel Xeon W ECC + NVIDIA RTX PRO sobre Ubuntu Linux) |
+| **Nódulo Móvel Edge** | **Google Pixel 11 Pro** (Tensor G6 NPU + Titan M3) e MedGemma Quantizado (2B/4B INT8) |
+| **Cloud AI (GCP)** | **MedGemma Maestro (7B/27B)** no **Vertex AI** com guardrails clínicos dinâmicos |
+| **Logística Verde e Geo** | **Google Maps Platform** (Routes API Eco-Routing & Fleet Engine) + IoT Cadeia de Frio BLE 6/Thread |
+| **Ledger de Auditoria e BD** | **Cloud SQL Enterprise Plus (PostgreSQL)** Armazenamento Append-Only de Cadeia de Custódia SHA-256 |
+| **Interoperabilidade Clínica** | **HL7 FHIR R4 e SNOMED CT** via **Google Cloud Healthcare API** (Camada Anticorrupção DDD) |
 
 ---
 
-## ⚖️ Alinhamento Regulatório Multijurisdicional
+## 4. Filosofia do Cuidado: O Firewall Humanista (ADR-006 e ADR-010)
 
-Projetado desde o primeiro dia para satisfazer os padrões hemisféricos de segurança da saúde e soberania de dados:
-* 🇧🇷 **Brasil:** Adesão estrita à LGPD, ANVISA (diretrizes SaMD - Software como Dispositivo Médico) e prontidão para interoperabilidade nativa com o **SUS (Rede Nacional de Dados em Saúde - RNDS)**.
-* 🇺🇸 **Estados Unidos:** HIPAA, SOC 2 Type II, alinhamento de segurança CISA e conformidade NDAA.
-* 🌎 **América Hispânica:** Marcos locais de privacidade de dados (Argentina, Chile, Colômbia, México) e padrões nacionais de Prontuário Eletrônico do Paciente.
+Inspirado na ética médica humanista (*Magnifica Humanitas* — zero iatrogenia, dignidade humana acima da automação), o **Firewall Humano** exige integridade cognitiva antes de habilitar qualquer ação clínica.
 
----
-
-## 📈 Status Atual e Marcos
-
-Design arquitetônico concluído e auditado:
-- **Event Storming (MVP-0):** Concluído com 14 hotspots clínicos/operacionais resolvidos.
-- **Limites de Agregados v0.3:** Padrões de reparo vs. aceitação formalmente documentados.
-- **Context Map (DDD):** Camada Anticorrupção (ACL) para FHIR R4 e Modelo de Referência regulatório estabelecidos.
-- **Integração Contínua:** Pipelines CI/CD verdes, auditoria automatizada de documentação e verificação de segredos `gitleaks`.
-
-**Em andamento:** Implementação do MVP e orquestração de Cloud AI para o **Google for Startups Cloud Program**.
+Estes axiomas (clareza mental obrigatória, modulação de carga de trabalho e atenção direcionada para a assinatura SNOMED CT) são compilados como **invariantes de domínio estritas em Go** dentro do núcleo de governança (`pkg/governance/`), respaldados por testes unitários automatizados (`go test ./...`). O sistema impõe o **Desarme da IA (AX-012)**: a IA pode sugerir, mas apenas um profissional humano com registro profissional válido pode autorizar ações clínicas irreversíveis.
 
 ---
 
-## 🧭 Governança Ética
+## 5. Resiliência Multirregião e Recuperação de Desastres (DR)
 
-Princípios inegociáveis do manifesto do projeto:
-
-1. **Dignidade sobre os dados.**
-2. **Autonomia sobre a automação.**
-3. **Transparência sobre caixas pretas.**
-4. **Cuidado sobre a eficiência.**
-5. **Presença sobre a conexão.**
-6. **Prevenção sobre a reação.**
-7. **Educação sobre a doutrinação.**
-
-Os dados dos pacientes são processados de forma estritamente pseudonimizada. Nenhuma decisão clínica é automatizada.
+A NurseHealth.ai garante a continuidade clínica sob a **Doutrina de Segurança Sanitária das Américas**:
+- **Camada 0 (Alta Disponibilidade Intra-Regional):** Operação síncrona multizona em `southamerica-west1` (Santiago) e `us-east1` (Virgínia do Norte), alcançando **RPO = 0** e **RTO < 60s**.
+- **Fail-Close Imutável:** Nenhuma comutação por falha de infraestrutura pode omitir os portões cognitivos do operador ou as invariantes de segurança do paciente.
+- **Continuidade Soberana:** Arquitetura desenhada para impedir que quedas regionais de nuvem interrompam a assistência domiciliar crítica.
 
 ---
 
-## 🧠 Filosofia do Cuidado: O Firewall Humano
+## 6. Alinhamento Regulatório Multijurisdiccional e Marco de P&D
 
-A enfermagem de precisão exige mais do que habilidade técnica: requer integridade cognitiva. O **Firewall Humano** (ADR-006) codifica três axiomas fundacionais que condicionam cada evento clínico:
+Desenhado desde o dia zero para satisfazer marcos hemisféricos de bioseguridade, regimes de incentivo fiscal de P&D e normativas sanitárias:
 
-- **AX-001 (Inércia e Ruído):** a clareza mental como precondição. Se `MentalClarity < 7`, o sistema bloqueia a criação do evento e registra a tentativa.
-- **AX-002 (Tons / nível de trabalho):** o tom energético modula a eficácia clínica. Se `WorkLevel == LOW`, o sistema sugere realocação ou pausa.
-- **AX-003 (Atenção simples):** a atenção dirigida como condição para assinar o evento SNOMED. Se `SimpleAttention == false`, o operador deve registrar um `AttentionalFinding` antes de assinar.
-
-Estes axiomas não são aspiracionais: são **invariantes de domínio** exigidas pelo Value Object `RuidoCheck` com testes unitários. Um profissional em estado cognitivo não apto não pode criar nem assinar um evento clínico: o sistema bloqueia e registra a tentativa.
-
-**Implementação:**
-
-- [Axiomas fundacionais](docs/philosophy/axioms.json) (AX-001 a AX-003)
-- [Value Object RuidoCheck](pkg/cognitive/ruido_check.go) (gates tipados com testes)
-- [ADR-006: Firewall Humano (MVP)](docs/architecture/decisions/ADR-006-humanistic-firewall-mvp.md)
-- [Context Map v0.2](docs/domain/context-map.md) (invariantes I10, I11)
+- 🇦🇷 **Argentina (Jurisdição Piloto e Hub de P&D):** Estruturado sob o regime de Economia do Conhecimiento (Lei 27.506 - Códigos ARCA CLAE 620100 e 721000) e conformidade com ANMAT (SaMD), Lei 25.326 e Lei 24.051 (Resíduos Perigosos / Logística Reversa).
+- 🇺🇸 **Estados Unidos (Hub Corporativo e de Escala):** Conformidade com HIPAA, FDA SaMD (Good Machine Learning Practice), SOC 2 Type II e NDAA Sec. 889 via estrutura matriz Delaware C-Corp.
+- 🇧🇷 **Brasil (Expansão e Conformidade Regulatória):**
+  * **Privacidad e Saúde Digital:** Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018).
+  * **Dispositivos Médicos e Cadeia de Frio:** Diretrizes da **ANVISA** para Software como Dispositivo Médico (SaMD conforme **RDC Nº 657/2022**) e boas práticas de distribuição de medicamentos (**RDC Nº 430/2020**).
+  * **Interoperabilidade Nacional:** Prontidão nativa para integração com a Rede Nacional de Dados em Saúde (**RNDS**) do Sistema Único de Saúde (**SUS**).
 
 ---
 
-## 👥 Equipe Core
+## 7. Estrutura do Repositório, ADRs e Proposta de Pesquisa GCP
 
-- **Barto** — Founder & Product Owner.
-- **Leonor** — Strategic Advisor.
+- **Architecture Decision Records (ADRs):** Consolidados do ADR-001 ao ADR-010 (incluindo Firewall Humano, Extensões FHIR R4, Ledger de Auditoria SHA-256 e Arquitetura Disarm AI).
+- **Integração Contínua (CI/CD):** Pipelines 100% em verde executando testes unitários/RDD em Go, validação de links Markdown, auditoria de ADRs e escaneamento automatizado de segredos com `gitleaks`.
+- 📂 **Proposta Detalhada de Pesquisa GCP (`/docs/gcp-proposal/`):**
+  1. [`01_architecture_overview.md`](./docs/gcp-proposal/01_architecture_overview.md) — Topologia Híbrida de Ponta a Ponta (Edge / Workstation / Cloud).
+  2. [`02_panamerican_security_and_compliance.md`](./docs/gcp-proposal/02_panamerican_security_and_compliance.md) — Governança Zero-Trust, LGPD, ANVISA e SUS/RNDS.
+  3. [`03_edge_and_gentle_ai.md`](./docs/gcp-proposal/03_edge_and_gentle_ai.md) — Quantização MedGemma, NPU Pixel 11 Pro e Fluxo Gentle-AI RDD/ODD.
+  4. [`04_multiregion_dr_and_failover.md`](./docs/gcp-proposal/04_multiregion_dr_and_failover.md) — Conmutação Multirregião (`southamerica-west1` / `us-east1`).
 
 ---
 
-## 🛡️ Arquitetura de Resiliência Multicamadas e Soberania de Dados
+## 8. Equipe Fundadora e Executiva
 
-O NurseHealth.ai opera sob a **Doutrina de Segurança Sanitária das Américas**, garantindo continuidade clínica e conformidade regulatória em todos os momentos.
+Liderança multidisciplinar que integra engenharia de software, medicina clínica, gestão de projetos, direito da saúde e logística farmacêutica:
 
-- **Camada 0 (Intra-Regional):** Nossa primeira linha de defesa. Operamos com alta disponibilidade síncrona multizona em `southamerica-east1` (São Paulo), garantindo RPO=0 e RTO<60s para a soberania de dados no Brasil, em estrita conformidade com a **LGPD (Lei Geral de Proteção de Dados)** e a **RDC 657/2022 da ANVISA** para SaMD.
-- **Fail-Close Imutável (Invariantes I10/I11):** Nenhuma falha de infraestrutura permite novas tentativas se os gates cognitivos do operador (`RuidoCheck`, AX-001 a AX-003) ou do paciente (AX-004 a AX-006) tiverem bloqueado a operação. O veto clínico é determinístico e registrado de forma imutável (append-only) no ledger.
-- **Motivação Operacional:** Projetado após o incidente público em `europe-west2` (outubro de 2026). Nossa topologia pan-americana opera de forma soberana, sem dependência de regiões externas.
+- **Walter Bartolomé (`@Barto912`)** — Fundador, Product Owner e Arquiteto Principal de Sistemas e Ética.
+- **Leonor Figueroa** — Technical Project Manager e Assessora Estratégica (Auditoria Documental, Conformidade de Repositório e Operações do Piloto Canning).
+- **Dr. Daniel Rojo** — Chief Medical Information Officer (CMIO) e Diretor Médico (Taxonomias Clínicas SNOMED CT, Extensões FHIR R4 e Protocolos de Enfermagem Domiciliar).
+- **Divisão de Assuntos Jurídicos e Regulatórios** — Direito Sanitário, LGPD / HIPAA e Estruturação Societária (Conselho Assessor e Direção Fracional).
+- **Divisão de Desenvolvimento de Negócios e Operações** — Unit Economics e Parcerias Público-Privadas / B2B em Saúde (Conselho Assessor e Direção Fracional).
+- **Divisão de Logística Farmacêutica e Bioseguridade** — Conformidade da Cadeia de Frio (+2°C a +8°C), Logística Reversa Verde e Rastreabilidade ANVISA (Farmacêuticos Especialistas).
 
-*Para detalhes técnicos de replicação entre regiões e failover, consulte `docs/gcp-proposal/04_multiregion_dr_and_failover.md`.*
+*Contato Institucional:* `contact@nursehealth.ai`
 
-## 📄 Licença
+---
 
-Proprietário. Todos os direitos reservados.
+## 9. Licença e Propriedade Intelectual
+
+**Modelo de Licenciamento Híbrido:**
+- **Proprietário (Todos os Direitos Reservados):** Os motores centrais em Go, protocolos criptográficos e pipelines de destilação de IA constituem propriedade intelectual exclusiva da NurseHealth.ai.
+- **Aberto / Revisão Acadêmica (Apache 2.0 / CC-BY-NC-SA 4.0):** Os adaptadores FHIR/SNOMED, a documentação ADR e os esquemas de conformidade regulatória são publicados para promover a interoperabilidade, a revisão acadêmica e a auditoria institucional.
