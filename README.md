@@ -1,147 +1,133 @@
-# NurseHealth.ai | Pan-American Precision Home Healthcare & Biosecurity Platform
+# NurseHealth.ai | Pan-American Precision Home Healthcare & Green Biosecurity Platform
 
-**Precision Home Nursing with Edge AI & Cryptographic Traceability.**
-
-[![CI](https://github.com/Barto912/nursehealth-ai/actions/workflows/main.yml/badge.svg)](https://github.com/Barto912/nursehealth-ai/actions)
-[![Docs](https://github.com/Barto912/nursehealth-ai/actions/workflows/auditoria-docs.yml/badge.svg)](https://github.com/Barto912/nursehealth-ai/actions)
-[![Seguridad](https://github.com/Barto912/nursehealth-ai/actions/workflows/seguridad-gitleaks.yml/badge.svg)](https://github.com/Barto912/nursehealth-ai/actions)
+**Precision Home Nursing, Hybrid Edge-to-Cloud AI, Cryptographic Traceability & Green Pharmaceutical Reverse Logistics.**
 
 🌐 **Read this documentation in other languages:**
-- [🇪🇸 Español (Operaciones Hispanoamérica)](./README_ES.md)
+- [🇪🇸 Español (Operaciones Hispanoamérica, ANMAT & Economía del Conocimiento)](./README_ES.md)
 - [🇧🇷 Português (Operações Brasil / ANVISA & SUS)](./README_PT.md)
 
-> 🚧 **Project Status: RESEARCH & ARCHITECTURAL DESIGN.**
-> This repository is not a production clinical product yet. The code and documentation presented here are experimental and their use in live clinical environments is neither authorized nor validated at this stage.
+> 🚧 **Project Status: RESEARCH, R&D & ARCHITECTURAL VALIDATION (`v0.4.0-research-proposal`).**  
+> This repository contains the foundational R&D architecture, deterministic Go core (`stdlib-only`), and sovereign AI distillation pipelines of NurseHealth.ai. Live clinical deployment is strictly gated behind institutional validation protocols.
 
 ---
 
-## 🛡️ The Problem & Pan-American Health Security Doctrine
+## 1. Executive Summary & Pan-American Health Security Doctrine
 
-Thousands of chronic patients across the Americas receive home healthcare without real traceability. Today, this critical work remains invisible: paper spreadsheets, expired medications inside homes, broken chains of custody, and clinical decisions lacking auditable evidence.
+Thousands of chronic and post-acute patients across the Americas receive home healthcare without verifiable traceability. Today, extra-hospital care remains fragmented: paper records, compromised cold chains, expired medications accumulating inside homes, and clinical decisions lacking cryptographic auditability.
 
-Framed within the **Pan-American Health Security Doctrine**, **NurseHealth.ai** transforms decentralized home care into an auditable, zero-trust biosecurity grid built natively on the **Google Cloud Platform (GCP)** ecosystem.
+Framed within the **Pan-American Health Security Doctrine**, **NurseHealth.ai** transforms decentralized home care into an auditable, zero-trust biosecurity and green reverse-logistics grid built natively on the **Google Cloud Platform (GCP)** and **Google AI (Gemma / MedGemma)** ecosystem.
 
-* **Initial Pilot:** 57 gated communities (*countries y barrios cerrados*) in Canning, Buenos Aires, Argentina.
-* **Continental Vision:** Regional scaling across Chile, Uruguay, Colombia, Mexico, Brazil (SUS/ANVISA), and the United States under a unified cryptographic and clinical protocol.
-
----
-
-## 💡 The Solution
-
-An extra-hospital precision nursing and pharmaceutical reverse logistics platform:
-
-- **Hybrid Edge-to-Cloud AI:** Medication identification and clinical triage directly on the nurse's device (**Google Pixel 11 Pro**), without exposing raw patient PII to the cloud.
-- **Cryptographic Chain of Custody:** Every clinical event and sample movement is sealed with **SHA-256** in an append-only Event Store.
-- **Pharmaceutical Reverse Logistics:** Home collection of expired or unused medications with end-to-end traceability up to final bio-safe disposal.
-- **Fail-Close by Design:** When in doubt, the deterministic Go engine blocks execution and escalates to a human medical authority. It never improvises.
-
-> **Motto:** *Judgment is human; traceability belongs to the system.*
-
-**Platform Thesis:** AI-supported precision nursing that elevates skilled autonomous work into a verifiable professional career—enabling continuous education, auditable reputation, and economic dignity for caregivers across the Americas.
+- **Initial Clinical & Logistics Pilot:** 100-case cohort across 57 gated communities in the **Canning corridor (Esteban Echeverría / Ezeiza), Buenos Aires Province, Argentina**.
+- **Continental Scaling Roadmap:** Phased expansion across **Uruguay, Chile, Colombia, Mexico, Brazil (SUS/RNDS & ANVISA), and the United States** under a unified HL7 FHIR R4, SNOMED CT, and SHA-256 cryptographic protocol.
+- **Platform Thesis:** *Judgment is human; traceability belongs to the system.* NurseHealth.ai elevates autonomous nursing into a verifiable profession while preventing domestic pharmaceutical pollution through eco-routed reverse logistics.
 
 ---
 
-## 🏗️ Technical Architecture & Hybrid AI Flow
+## 2. Core Capabilities & Green Biosecurity Solution
 
-1. **Edge Node — Google Pixel 11 Pro:** Quantized MedGemma (2B/4B) on Tensor NPU + TFLite + Engram (SQLite/FTS5 local context store).
-2. **Zero-Trust Transport:** Pseudonymized, cryptographically signed clinical event stream.
-3. **Core Ingestion — Google Cloud Run:** 100% Go (Golang) Microservices, REST API, Deterministic Fail-Close Engine, and Event Sourcing.
-4. **Cloud AI Orchestration — Vertex AI:** MedGemma Maestro (7B/27B) + Google Harness² (*Propose-Probe-Compose* dynamic guardrails).
-5. **Immutable Audit Ledger — Cloud SQL:** PostgreSQL Append-Only SHA-256 Event Store.
-6. **Clinical Interoperability — Cloud Healthcare API:** HL7 FHIR R4 & SNOMED CT isolated behind a Domain-Driven Design Anti-Corruption Layer (ACL).
+1. **Hybrid Edge-to-Workstation-to-Cloud AI (Gemma Ecosystem):**
+   * **In-Home Edge Triage:** Real-time medication verification, wound documentation, and clinical triage on the nurse's **Google Pixel 11 Pro** without exposing raw patient PII/PHI to external networks.
+   * **Sovereign Local R&D Distillation Node:** On-premise **MIL-STD-810H Certified Workstation** dedicated to local dataset sanitization, QLoRA fine-tuning, and INT8 quantization of **Google Gemma / MedGemma** models under strict national data sovereignty laws.
+   * **Cloud Orchestration:** Multimodal clinical reasoning via **MedGemma Maestro (7B/27B) on GCP Vertex AI** governed by dynamic clinical guardrails.
+2. **Green Pharmaceutical Reverse Logistics & Cold-Chain IoT:**
+   * Home collection of expired, unused, or thermo-sensitive medications (+2°C to +8°C) using IoT thermal containers (Bluetooth 6 / Thread).
+   * Carbon-optimized collection routes powered by **Google Maps Platform (Routes API Eco-Friendly Routing & Fleet Engine)**, ensuring full chain-of-custody up to certified bio-safe destruction.
+3. **Deterministic Fail-Close Engine (`100% Go stdlib-only`):**
+   * Zero external dependencies in the clinical decision core. Upon any logical discrepancy, SNOMED CT taxonomy mismatch, or operator fatigue alert, the engine mechanically blocks execution, emits a signed rejection receipt, and escalates to a human medical authority.
+4. **Immutable Cryptographic Audit Ledger:**
+   * Every clinical intervention, cognitive gate check, and pharmaceutical custody transfer is sealed with **SHA-256** in an append-only event store.
 
-### Technical Stack
+---
 
-| Layer | Technology |
+## 3. Three-Tier Technical Architecture & Hybrid AI Flow
+
+To satisfy both **Google Cloud AI scalability** and **Argentine / Pan-American Data Sovereignty mandates**, NurseHealth.ai operates across three physical tiers:
+
+1. **Tier 1 — Mobile Edge Node (Google Pixel 11 Pro / Android 17):**
+   * Runs quantized **MedGemma Small (2B/4B INT8)** via LiteRT on the **Google Tensor G6 NPU** (`< 300ms` latency).
+   * Hardware-backed **Titan M3** security enclave signs local `VerificationReceipt` payloads using SHA-256.
+   * **Local Context Store:** Edge-first SQLite + FTS5 context store that strips and pseudonymizes PHI at the edge prior to transmission.
+2. **Tier 2 — Sovereign R&D & Air-Gapped Distillation Node (MIL-STD-810H Certified Workstation):**
+   * Dedicated on-premise workstation (**Intel Xeon W ECC / NVIDIA RTX PRO, MIL-STD-810G/H certified**) located in Buenos Aires Province, Argentina.
+   * Executes local model distillation (QLoRA / weight quantization), synthetic clinical data generation, and deterministic Go (`stdlib-only`) binary compilation and verification before edge deployment.
+3. **Tier 3 — Cloud Orchestration & Multi-Region Ledger (Google Cloud Platform):**
+   * **Google Cloud Run:** 100% Go microservices, REST API, and Event Sourcing ingestion.
+   * **Vertex AI:** MedGemma Maestro (7B/27B) with dynamic guardrails.
+   * **Cloud SQL Enterprise Plus:** PostgreSQL Append-Only SHA-256 Event Store.
+   * **Cloud Healthcare API:** HL7 FHIR R4 & SNOMED CT isolated behind a Domain-Driven Design Anti-Corruption Layer (ACL).
+   * **Google Maps Platform:** Routes API & Fleet Engine for low-emission home nursing dispatch and reverse pharmaceutical collection.
+
+| Architectural Layer | Technology & Standards |
 | :--- | :--- |
-| **Backend Core** | 100% Go (Golang) on Google Cloud Run (Event Sourcing & Fail-Close Engine) |
-| **Frontend Mobile** | React Native with Expo |
-| **Edge AI (Device)** | Quantized MedGemma Small (2B/4B) & TensorFlow Lite on Google Pixel 11 Pro (Tensor NPU) |
-| **Cloud AI (GCP)** | MedGemma Maestro (7B/27B) on Vertex AI + Google Harness² guardrails |
-| **AI Governance & Memory** | Gentle-AI (ODD/RDD) + Engram (Local-first SQLite + FTS5 context store) |
-| **Database & Ledger** | PostgreSQL on Cloud SQL (Append-only SHA-256 Event Store) |
-| **Interoperability** | HL7 FHIR R4 & SNOMED CT via Google Cloud Healthcare API (behind DDD ACL) |
-| **Infrastructure** | Google Cloud Platform (GCP) |
+| **Backend Core** | 100% Go (`stdlib-only` core) on **Google Cloud Run** (Event Sourcing & Fail-Close Engine) |
+| **On-Premise R&D Node** | **MIL-STD-810H Certified Workstation** (Intel Xeon W ECC + NVIDIA RTX PRO on Ubuntu Linux) |
+| **Mobile Edge Node** | **Google Pixel 11 Pro** (Tensor G6 NPU + Titan M3) & Quantized MedGemma (2B/4B INT8) |
+| **Cloud AI (GCP)** | **MedGemma Maestro (7B/27B)** on **Vertex AI** with dynamic clinical guardrails |
+| **Green Logistics & Geo** | **Google Maps Platform** (Routes API Eco-Routing & Fleet Engine) + BLE 6/Thread Cold-Chain IoT |
+| **Audit Ledger & DB** | **Cloud SQL Enterprise Plus (PostgreSQL)** Append-Only SHA-256 Chain-of-Custody Store |
+| **Clinical Interoperability** | **HL7 FHIR R4 & SNOMED CT** via **Google Cloud Healthcare API** (DDD Anti-Corruption Layer) |
 
 ---
 
-## ⚖️ Multi-Jurisdictional Regulatory Alignment
+## 4. Philosophy of Care: The Humanistic Firewall (ADR-006 & ADR-010)
 
-Engineered from day one to satisfy hemispheric health security and data sovereignty standards:
-* 🇺🇸 **United States:** HIPAA, SOC 2 Type II, CISA security alignment, and NDAA compliance.
-* 🇧🇷 **Brazil:** LGPD, ANVISA (SaMD guidelines), and native interoperability readiness for **SUS (RNDS)**.
-* 🌎 **Hispanic America:** Local data privacy frameworks (Argentina Ley 25.326, Chile, Uruguay, Colombia, Mexico) and national Electronic Health Record standards.
+Inspired by humanist medical ethics (*Magnifica Humanitas* — zero iatrogenesis, human dignity over automation), the **Human Firewall** enforces cognitive integrity before any clinical action is permitted.
 
----
-
-## 📈 Current Status & Milestones
-
-Architectural design completed and audited:
-- **Event Storming (MVP-0):** Completed with 14 critical clinical/operational hotspots resolved.
-- **Aggregate Boundaries v0.3:** Repair vs. acceptance patterns formally documented.
-- **DDD Context Map:** Anti-Corruption Layer (ACL) for FHIR R4 and regulatory Reference Model established.
-- **Continuous Integration:** Green CI/CD pipelines, automated documentation auditing, and `gitleaks` secret scanning on every commit.
-
-**In Progress:** MVP implementation and cloud AI orchestration applying for the **Google for Startups Cloud Program**.
-
-📂 **Detailed GCP Research Proposal:** Technical deep-dives are located in [`/docs/gcp-proposal/`](./docs/gcp-proposal/):
-1. [`01_architecture_overview.md`](./docs/gcp-proposal/01_architecture_overview.md)
-2. [`02_panamerican_security_and_compliance.md`](./docs/gcp-proposal/02_panamerican_security_and_compliance.md)
-3. [`03_edge_and_gentle_ai.md`](./docs/gcp-proposal/03_edge_and_gentle_ai.md)
+These axioms (mandatory mental clarity, workload modulation, and directed attention for SNOMED CT signing) are compiled as strict **Go domain invariants** inside the governance core (`pkg/governance/`), backed by automated unit tests (`go test ./...`). The system enforces **AI Disarmament (AX-012)**: the AI can suggest, but only a credentialed human can authorize irreversible clinical actions.
 
 ---
 
-## 🧭 Ethical Governance
+## 5. Multi-Region Resilience & Disaster Recovery
 
-Non-negotiable principles from the project manifesto:
-
-1. **Dignity over data.**
-2. **Autonomy over automation.**
-3. **Transparency over black boxes.**
-4. **Care over efficiency.**
-5. **Presence over connection.**
-6. **Prevention over reaction.**
-7. **Education over indoctrination.**
-
-Patient data is processed strictly pseudonymized. No clinical decision is ever automated.
+NurseHealth.ai guarantees clinical continuity under the **Doctrine of Health Security of the Americas**:
+- **Layer 0 (Intra-Regional HA):** Synchronous multi-zone high availability across `southamerica-west1` (Santiago) and `us-east1` (Northern Virginia), achieving **RPO = 0** and **RTO < 60s**.
+- **Immutable Fail-Close:** Infrastructure failovers never bypass cognitive gates or patient safety invariants.
+- **Sovereign Continuity:** Architected to prevent single-region cloud outages from ever disrupting active home care.
 
 ---
 
-## 🧠 Philosophy of Care: The Human Firewall
+## 6. Multi-Jurisdictional Regulatory & R&D Alignment
 
-Precision nursing requires more than technical skill—it demands cognitive integrity. The **Human Firewall** (ADR-006) codifies three foundational axioms that gate every clinical event:
+Engineered from day one to satisfy hemispheric biosecurity, tax-incentive R&D frameworks, and health regulations:
 
-- **AX-001 (Inertia and Noise):** Mental clarity as precondition. If `MentalClarity < 7`, the system blocks event creation and logs the attempt.
-- **AX-002 (Tones / Work Level):** Energetic tone modulates clinical efficacy. If `WorkLevel == LOW`, the system suggests reassignment or pause.
-- **AX-003 (Simple Attention):** Directed attention as condition for SNOMED signature. If `SimpleAttention == false`, the operator must record an `AttentionalFinding` before signing.
-
-These axioms are not aspirational—they are **domain invariants** enforced by the `RuidoCheck` Value Object with unit tests. A professional in unfit cognitive state cannot create or sign a clinical event: the system blocks and records.
-
-**Implementation:**
-
-- [Foundational Axioms](docs/philosophy/axioms.json) (AX-001 to AX-003)
-- [RuidoCheck Value Object](pkg/cognitive/ruido_check.go) (typed gates with tests)
-- [ADR-006: Human Firewall (MVP)](docs/architecture/decisions/ADR-006-humanistic-firewall-mvp.md)
-- [Context Map v0.2](docs/domain/context-map.md) (invariants I10, I11)
-
----
-## 👥 Core Team
-
-- **Barto** — Founder & Product Owner.
-- **Leonor** — Strategic Advisor.
+- 🇦🇷 **Argentina (Pilot Jurisdiction & R&D Hub):**
+  * **Data Privacy & Health Law:** Ley 25.326 (Protección de Datos Personales), Ley 26.529 (Derechos del Paciente), and Ley 27.553 (Receta Electrónica y Teleasistencia).
+  * **Clinical & Pharmaceutical Biosecurity:** Aligned with **ANMAT** Software as a Medical Device (SaMD) guidelines, **Ley Nacional 24.051** (Residuos Peligrosos / Farmacéuticos), and **Ley Provincial PBA 11.347** (Residuos Patogénicos) for reverse logistics traceability.
+  * **Knowledge Economy R&D Framework (Ley 27.506 - LEC):** Structured under ARCA CLAE Codes **620100** (Software Architecture) and **721000** (Experimental R&D in Engineering and Health Sciences) via our Argentine SAS operating entity.
+- 🇺🇸 **United States (Corporate & Scaling Hub):** HIPAA, FDA SaMD (Good Machine Learning Practice), SOC 2 Type II, and NDAA Sec. 889 compliance via a Delaware C-Corp parent structure.
+- 🇧🇷 **Brazil:** LGPD, ANVISA (RDC Nº 657/2022 for SaMD & RDC Nº 430/2020 for pharmaceutical cold chain), and native interoperability readiness for **SUS (RNDS)**.
 
 ---
 
-## 🛡️ Multi-Layer Resilience and Data Sovereignty Architecture
+## 7. Repository Structure, ADRs & GCP Research Proposal
 
-NurseHealth.ai operates under the **Doctrine of Health Security of the Americas**, ensuring clinical continuity and regulatory compliance at all times.
+- **Architecture Decision Records (ADRs):** Consolidated ADR-001 through ADR-010 (including Human Firewall, FHIR R4 Extensions, SHA-256 Audit Ledger, and Disarm AI Architecture).
+- **Continuous Integration:** 100% green CI/CD pipelines across Go unit/RDD test suites, Markdown link validation, ADR linting, and automated `gitleaks` secret scanning.
+- 📂 **Detailed GCP Research Proposal (`/docs/gcp-proposal/`):**
+  1. [`01_architecture_overview.md`](./docs/gcp-proposal/01_architecture_overview.md) — End-to-End Hybrid Edge/Workstation/Cloud Topology.
+  2. [`02_panamerican_security_and_compliance.md`](./docs/gcp-proposal/02_panamerican_security_and_compliance.md) — HIPAA, ANMAT, ANVISA & Zero-Trust Governance.
+  3. [`03_edge_and_gentle_ai.md`](./docs/gcp-proposal/03_edge_and_gentle_ai.md) — MedGemma Quantization, Pixel 11 Pro NPU & Gentle-AI RDD/ODD.
+  4. [`04_multiregion_dr_and_failover.md`](./docs/gcp-proposal/04_multiregion_dr_and_failover.md) — Multi-Region Failover (`southamerica-west1` / `us-east1`).
 
-- **Layer 0 (Intra-Regional):** Our first line of defense. We operate with synchronous multi-zone high availability in `southamerica-west1` and `us-east1`, guaranteeing RPO=0 and RTO<60s. This design ensures strict adherence to **HIPAA**, **FDA SaMD** guidelines, and **SOC 2 Type II** standards.
-- **Immutable Fail-Close (Invariants I10/I11):** No infrastructure failure enables automatic retries if the operator's cognitive gates (`RuidoCheck`, AX-001 to AX-003) or patient gates (AX-004 to AX-006) have blocked the operation. Clinical vetoes are deterministic and recorded immutably (append-only) in the audit ledger.
-- **Operational Motivation:** Architected in response to the public `europe-west2` incident (October 2026). Our Pan-American topology operates sovereignly, with zero dependency on external regions, ensuring precision nursing tools never fail during critical care.
+---
 
-*For technical details on cross-region replication and failover mechanisms, refer to `docs/gcp-proposal/04_multiregion_dr_and_failover.md`.*
+## 8. Founding & Executive Team
 
-## 📜 License
+Multidisciplinary leadership combining software engineering, clinical medicine, project governance, healthcare law, and pharmaceutical logistics:
 
-Proprietary. All rights reserved.
+- **Walter Bartolomé (`@Barto912`)** — Founder, Product Owner & Lead Ethical/Systems Architect.
+- **Leonor Figueroa** — Technical Project Manager & Strategic Advisor (Documentation Audit, Repository Compliance & Canning Pilot Operations).
+- **Dr. Daniel Rojo** — Chief Medical Information Officer (CMIO) & Medical Director (SNOMED CT Clinical Taxonomies, FHIR R4 Extensions & Home Nursing Protocols).
+- **Legal & Regulatory Affairs Division** — Healthcare Law, Data Privacy (Ley 25.326 / HIPAA) & Corporate Structuring (Advisory & Fractional Counsel).
+- **Business Development & Operations Division** — Unit Economics, B2B/Public-Private Health Partnerships (Advisory & Fractional Lead).
+- **Pharmaceutical Logistics & Biosecurity Division** — Cold-Chain Compliance (+2°C to +8°C), Green Reverse Logistics & ANMAT Traceability (Specialist Pharmacists).
+
+*Institutional Contact:* `contact@nursehealth.ai`
+
+---
+
+## 9. License & Intellectual Property
+
+**Hybrid Licensing Model:**
+- **Proprietary (All Rights Reserved):** Core Go engines, cryptographic protocols, and AI distillation pipelines remain the exclusive intellectual property of NurseHealth.ai.
+- **Open / Academic Review (Apache 2.0 / CC-BY-NC-SA 4.0):** FHIR/SNOMED adapters, ADR documentation, and regulatory compliance schemas are published to promote interoperability, academic review, and institutional audit.
