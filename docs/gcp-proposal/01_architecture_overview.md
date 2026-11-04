@@ -4,7 +4,7 @@
 NurseHealth.ai operates on a decentralized, hybrid Edge-to-Cloud architecture natively built on Google Cloud Platform (GCP). The system pairs a lightweight Edge AI ("Student") with a robust Cloud AI ("Master") to ensure continuous clinical triage without compromising patient data sovereignty, even in offline environments.
 
 ## 2. The Master/Student MedGemma Topology
-* **The Student (Edge AI):** Google Pixel 11 Pro running quantized MedGemma Small (2B/4B) via TensorFlow Lite directly on the Tensor NPU. It handles immediate, offline-first tasks such as wound image classification, medication verification, and initial vital sign parsing.
+* **The Student (Edge AI):** Google Pixel 11 Pro running quantized MedGemma Small (2B INT8) via TensorFlow Lite directly on the Tensor NPU. It handles immediate, offline-first tasks such as wound image classification, medication verification, and initial vital sign parsing.
 * **The Master (Cloud AI):** GCP Vertex AI running MedGemma Maestro (7B/27B). It provides complex asynchronous clinical analysis, longitudinal patient context, and acts as the ultimate validator for the Student's preliminary findings.
 * **Google Harness² Orchestration:** Connects Master and Student using a *Propose-Probe-Compose* paradigm, enforcing deterministic guardrails that physically prevent clinical hallucinations.
 

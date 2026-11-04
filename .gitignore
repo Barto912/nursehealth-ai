@@ -12,3 +12,8 @@
 
 # Entorno
 .env
+
+# Compiled binaries
+demo-governance
+*.exe
+

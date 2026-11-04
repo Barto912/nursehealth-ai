@@ -1,7 +1,7 @@
 # Edge AI, Gentle-AI Governance & Deterministic Fail-Close Engine
 
 ## 1. Edge Execution on Google Pixel 11 Pro
-NurseHealth.ai leverages the advanced neural processing capabilities of the Google Pixel 11 Pro. By running quantized MedGemma (2B/4B) models directly on the Tensor NPU via TensorFlow Lite, the platform ensures that critical triage—such as wound assessment and vital sign validation—can occur in real-time, even in disconnected or low-bandwidth environments.
+NurseHealth.ai leverages the advanced neural processing capabilities of the Google Pixel 11 Pro. By running quantized MedGemma (2B INT8) models directly on the Tensor NPU via TensorFlow Lite, the platform ensures that critical triage—such as wound assessment and vital sign validation—can occur in real-time, even in disconnected or low-bandwidth environments.
 
 ## 2. Gentle-AI & Engram Local Store
 To guarantee patient data sovereignty and localized context retention:

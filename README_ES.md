@@ -27,7 +27,6 @@ Enmarcada en la **Doctrina de Seguridad Sanitaria de las Américas**, **NurseHea
 
 1. **IA Híbrida en Tres Capas: Edge-to-Workstation-to-Cloud (Ecosistema Gemma):**
    * **Triage en el Borde (En Domicilio):** Verificación de medicamentos en tiempo real, documentación de heridas y triage clínico en el dispositivo **Google Pixel 11 Pro** del profesional sin exponer datos filiatorios (PII/PHI) crudos a redes externas.
-   * **Nodo Local Soberano de I+D y Destilación:** **Workstation Certificada Grado Militar (MIL-STD-810H)** *on-premise* dedicada a la sanitización local de datasets, ajuste fino (QLoRA) y cuantización INT8 de modelos **Google Gemma / MedGemma** bajo estricto cumplimiento de soberanía nacional de datos.
    * **Orquestación Cloud:** Razonamiento clínico multimodal mediante **MedGemma Maestro (7B/27B) en GCP Vertex AI** gobernado por guardrails clínicos dinámicos.
 2. **Logística Farmacéutica Inversa Verde e IoT de Cadena de Frío:**
    * Recolección domiciliaria de medicamentos vencidos, en desuso o termosensibles (+2°C a +8°C) utilizando contenedores térmicos IoT (Bluetooth 6 / Thread).
@@ -44,13 +43,10 @@ Enmarcada en la **Doctrina de Seguridad Sanitaria de las Américas**, **NurseHea
 Para satisfacer simultáneamente la **escalabilidad en Google Cloud AI** y los **mandatos de Soberanía de Datos de Argentina y las Américas**, NurseHealth.ai opera en tres niveles físicos:
 
 1. **Nivel 1 — Nodo Móvil en el Borde (Google Pixel 11 Pro / Android 17):**
-   * Ejecuta **MedGemma Small (2B/4B INT8)** cuantizado vía LiteRT sobre la **NPU Google Tensor G6** (`< 300ms` de latencia).
+   * Ejecuta **MedGemma Small (2B INT8)** cuantizado vía LiteRT sobre la **NPU Google Tensor G6** (`< 300ms` de latencia).
    * El enclave de seguridad por hardware **Titan M3** firma localmente los recibos `VerificationReceipt` mediante SHA-256.
    * **Almacén de Contexto Local:** Base SQLite + FTS5 local que depura y seudonimiza datos sensibles (PHI) en el borde antes de cualquier transmisión.
-2. **Nivel 2 — Nodo Soberano de I+D y Destilación Air-Gapped (Workstation Certificada MIL-STD-810H):**
-   * Estación de trabajo dedicada *on-premise* (**Intel Xeon W ECC / NVIDIA RTX PRO, certificada MIL-STD-810G/H**) radicada en la Provincia de Buenos Aires, Argentina.
-   * Ejecuta localmente la destilación de modelos (QLoRA / cuantización de pesos), generación de datos clínicos sintéticos y compilación/verificación determinista de binarios en Go (`stdlib-only`) antes de su despliegue en el borde.
-3. **Nivel 3 — Orquestación Cloud y Ledger Multirregión (Google Cloud Platform):**
+2. **Nivel 2 — Orquestación Cloud y Ledger Multirregión (Google Cloud Platform):**
    * **Google Cloud Run:** Microservicios 100% Go, API REST e ingesta por Event Sourcing.
    * **Vertex AI:** MedGemma Maestro (7B/27B) con guardrails dinámicos.
    * **Cloud SQL Enterprise Plus:** Event Store PostgreSQL Append-Only con encadenamiento SHA-256.
@@ -60,8 +56,7 @@ Para satisfacer simultáneamente la **escalabilidad en Google Cloud AI** y los *
 | Capa Arquitectónica | Tecnología y Estándares |
 | :--- | :--- |
 | **Backend Core** | 100% Go (núcleo `stdlib-only`) en **Google Cloud Run** (Event Sourcing y Motor Fail-Close) |
-| **Nodo Local de I+D** | **Workstation Certificada MIL-STD-810H** (Intel Xeon W ECC + NVIDIA RTX PRO sobre Ubuntu Linux) |
-| **Nodo Móvil Edge** | **Google Pixel 11 Pro** (Tensor G6 NPU + Titan M3) y MedGemma Cuantizado (2B/4B INT8) |
+| **Nodo Móvil Edge** | **Google Pixel 11 Pro** (Tensor G6 NPU + Titan M3) y MedGemma Cuantizado (2B INT8) |
 | **Cloud AI (GCP)** | **MedGemma Maestro (7B/27B)** en **Vertex AI** con guardrails clínicos dinámicos |
 | **Logística Verde y Geo** | **Google Maps Platform** (Routes API Eco-Routing & Fleet Engine) + IoT Cadena de Frío BLE 6/Thread |
 | **Ledger de Auditoría y BD** | **Cloud SQL Enterprise Plus (PostgreSQL)** Almacén Append-Only de Cadena de Custodia SHA-256 |
