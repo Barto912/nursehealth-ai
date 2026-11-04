@@ -15,10 +15,11 @@ The design integrates with the real state of the repository (no assumed files):
 
 | Real component in the repository | Risk before single-region SPOF | Zero-friction integration strategy |
 | --- | --- | --- |
-| `pkg/cognitive/ruido_check.go` and ADR-006 (Human Firewall, AX-001 to AX-003) | A regional failover that retries a clinical transaction without operator state would violate invariants I10/I11 | `RuidoCheck` is evaluated before any multi-region router; no cloud switch skips the human firewall (invariant I10) |
-| `pkg/triage` real contracts: `ValidateCareEvent`, `OperatorGate`, `AuditRepository`, `CognitiveBlockReason`, `PatientContextCheck` (AX-004 to AX-006), `middleware_test.go` | Wrapping non-existent files would break the build and committee trust | `pkg/triage/resilient_evaluator.go` will be born in PASO 3 as a self-contained deep module (Argon Q4 decision), with own types, wrapping real contracts; today `evaluator.go` does not exist and is not referenced |
-| `db/migrations/001_create_cognitive_audit_log.sql` (append-only, SHA-256, decision BLOCKED/ESCALATED/PASSED) | Audit lost during regional promotion would break clinical non-repudiation | Every failover event and clinical veto is recorded append-only with region and authority; no UPDATE/DELETE in schema |
-| CI pipeline (Go tests + RDD, markdown/ADR, broken links, gitleaks) | Markdown format errors or heavy dependencies would turn checks red in front of reviewers | This document uses tables compatible with `.markdownlint-cli2.jsonc`, public links only, and reaffirms stdlib-only in `go.mod` |
+| `pkg/governance/irreversible_decision_guard.go` and ADR-010 (AI Disarmament, AX-008, AX-009, AX-011, AX-012) | A regional failover that retries a clinical transaction without operator state would violate invariants I10/I11 | `IrreversibleDecisionGuard` validates before any multi-region router; no cloud switch skips the human firewall (invariant I10) |
+| `pkg/governance/disagreement_logger.go` and ADR-010 (Human Refutation, AX-016) | A regional failover that loses human refutation records would violate data sovereignty | `DisagreementLogger` captures every human override with SHA-256 cryptographic proof; no cloud switch loses refutation context |
+| `cmd/validate-axioms/main.go` + `docs/ethics/governance-axioms.json` (single source of normative truth) | A regional failover governed by stale or unvalidated axioms would violate AX-009 | Every deployment re-validates the axiom set at CI time; no runtime mutation of normative rules |
+| `pkg/adapter/phi_sanitizer_adapter.go` (PHI sanitization via DataProxy, HIPAA Safe Harbor) | PHI leakage during regional promotion would violate data sovereignty | Every clinical narrative is sanitized locally before transmission; no raw PHI crosses network boundary |
+| CI pipeline (Go tests + RDD, markdown/ADR, broken links, gitleaks) | Dependency bloat or external imports would violate stdlib-only constraint | All governance code uses zero external dependencies (`go.mod`); CI validates stdlib-only constraint on every commit |
 
 ## 2. Layer 0: intra-regional resilience (zone to region)
 
@@ -101,9 +102,9 @@ Phase 2 scalability note: above 50,000 monthly multi-country events (Series A/B)
 - Code-Red pre-warm (`PROTO-003`): `min-instances = 2` in both southern regions so the under-5-minute emergency sequence (UTIM/SAME 107 dispatch and Shockroom alert at Clínica Canning Health) never suffers cold-start latency.
 - Multi-region compute reference: [serve traffic from multiple regions in Cloud Run](https://docs.cloud.google.com/run/docs/multiple-regions) and [deployment archetypes](https://docs.cloud.google.com/architecture/deployment-archetypes/multiregional), complemented with [DR for cloud infrastructure outages](https://docs.cloud.google.com/architecture/disaster-recovery).
 
-### 5.2 Application layer: pkg/triage/resilient_evaluator.go (self-contained deep module)
+### 5.2 Application layer: Deterministic failover via `IrreversibleDecisionGuard`
 
-PASO 3 decision (Argon Q4, double-gate P-15): the module is born inside `pkg/triage` with self-contained types, wrapping real contracts (`ValidateCareEvent`, `OperatorGate`, `AuditRepository`, `CognitiveBlockReason`) and `cognitive.RuidoCheck`. Design sketch (not compiled code; implementation will re-verify every symbol against `go.mod` and merged sources):
+During regional failover, the `IrreversibleDecisionGuard` (pkg/governance/irreversible_decision_guard.go) enforces that no cloud switch can bypass clinical invariants (AX-008, AX-009, AX-011, AX-012). Every promoted transaction is re-validated against the single source of normative truth (`docs/ethics/governance-axioms.json`) before execution, ensuring deterministic veto of irreversible procedures lacking human supervisor signature.
 
 ```go
 package triage
@@ -164,7 +165,7 @@ Regional cascade behavior:
 | --- | --- | --- |
 | PASO 1 | Branch from current main (Git Safety First) | Completed: `feature/gcp-proposal-04` |
 | PASO 2 | This document in `docs/gcp-proposal/` with verified baseline and Layer 0 | This file |
-| PASO 3 | `pkg/triage/resilient_evaluator.go` plus tests (regional failover, immediate clinical veto, `FAIL_CLOSE_L0_EXHAUSTED`), under double-gate P-15 | Pending, after this merge |
+| PASO 3 | Integration tests for `IrreversibleDecisionGuard` under regional failover scenarios (cross-region veto propagation, axiom re-validation) | Pending, after this merge |
 | PASO 4 | Trilingual sync in `README.md`, `README_ES.md`, `README_PT.md` (Gate 5) | Pending |
 | PASO 5 | Final PR plus immutable tag `v0.5.0-gfs-ready` (Gate 8b) | Pending, after Gates 5 and 6 |
 
