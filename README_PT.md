@@ -18,7 +18,7 @@ Milhares de pacientes crônicos e pós-agudos em todo o continente recebem assis
 Enquadrada na **Doutrina de Segurança Sanitária das Américas**, a **NurseHealth.ai** transforma a internação e enfermagem domiciliar descentralizada em uma rede auditável de bioseguridade Zero-Trust e logística reversa verde, construída nativamente sobre o ecossistema **Google Cloud Platform (GCP)** e **Google AI (Gemma / MedGemma)**.
 
 - **Piloto Clínico e Logístico Inicial:** Coorte de 100 casos distribuída em 57 condomínios fechados (*gated communities*) no **corredor Canning (Esteban Echeverría / Ezeiza), Província de Buenos Aires, Argentina**, preparando a expansão para o mercado brasileiro.
-- **Roteiro de Escala Continental:** Expansão faseada para o **Brasil (integração nativa com SUS/RNDS e conformidade ANVISA), Uruguai, Chile, Colômbia, México e Estados Unidos** sob um protocolo criptográfico e clínico unificado (HL7 FHIR R4, SNOMED CT e SHA-256).
+- **Roteiro de Escala Continental:** Expansão faseada para o **Brasil, Colômbia e México e Estados Unidos** sob um protocolo criptográfico e clínico unificado (HL7 FHIR R4, SNOMED CT e SHA-256).
 - **Tese da Plataforma:** *O julgamento é humano; a rastreabilidade pertence ao sistema.* A NurseHealth.ai eleva a enfermagem autônoma a uma carreira verificável, prevenindo a poluição farmacológica doméstica por meio de logística reversa eco-roteirizada.
 
 ---
