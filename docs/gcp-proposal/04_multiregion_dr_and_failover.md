@@ -60,7 +60,7 @@ Two geopolitical rings on [official Google Cloud regions](https://docs.cloud.goo
                     v                               v
 +-------------------------------------+   +-------------------------------------+
 | SOUTH RING (Southern Cone & Brazil) |   | NORTH RING (US, Mexico & Colombia)  |
-| southamerica-west1 (Chile) primary  |   | us-east1 (South Carolina) primary   |
+| southamerica-west1 (Buenos Aires, Argentina) primary  |   | us-east1 (South Carolina) primary   |
 | - Cloud Run Go Core + ACL + MCP     |   | - Cloud Run Go Core + ACL + MCP     |
 | - Cloud SQL Enterprise+ (ledger)    |   | - Vertex AI MedGemma-27B + Harness2 |
 | - FHIR R4 Store (primary AR)        |   | - FHIR R4 Store (HIPAA US)          |
@@ -76,7 +76,7 @@ Two geopolitical rings on [official Google Cloud regions](https://docs.cloud.goo
 
 | Ring / documentary facade | GCP region | Physical location | Regulatory framework covered | Operational and failover role |
 | --- | --- | --- | --- | --- |
-| Southern Cone primary (`README_ES.md`) | `southamerica-west1` | Santiago, Chile | Argentina (Ley 25.326 art. 2, Ley 26.529, Ley 12.245 PBA, ANMAT), Chile, Uruguay | Primary ingestion of the Canning Health pilot; Cloud SQL Enterprise Plus primary instance |
+| Southern Cone primary (`README_ES.md`) | `southamerica-west1` | Buenos Aires, Argentina | Argentina (Ley 25.326 art. 2, Ley 26.529, Ley 12.245 PBA, ANMAT) | Primary ingestion of the Canning Health pilot; Cloud SQL Enterprise Plus primary instance |
 | South America peer and Brazil sovereignty (`README_PT.md`) | `southamerica-east1` | Osasco, São Paulo, Brazil | Brazil (ANVISA RDC 657/2022 SaMD, LGPD/ANPD, RNDS/SUS) | Active-active Go compute; mandatory residence for Brazilian clinical data; Cross-Region DR Replica for Southern Cone |
 | North primary and Andean region (`README.md`) | `us-east1` | Moncks Corner, South Carolina, US | US (HIPAA, FDA SaMD, SOC 2 Type II), Colombia (INVIMA, Ley 1581) | Primary Vertex AI inference node (MedGemma-27B + Harness2); transcontinental backup |
 | North peer and Mexico (`README.md`) | `us-central1` | Council Bluffs, Iowa, US | US (HIPAA), Mexico (COFEPRIS, LFPDPPP) | Vertex AI failover; RWD analytics with differential privacy (epsilon = 0.5) |
