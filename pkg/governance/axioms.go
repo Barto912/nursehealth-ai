@@ -55,7 +55,8 @@ func (c SignedClinicalCommand) CanonicalSigningBytes() []byte {
 
 func (c SignedClinicalCommand) ComputeRecordHash() string {
 	sigHex := hex.EncodeToString(c.SignatureDER)
-	return hex.EncodeToString(sha256.Sum256([]byte(fmt.Sprintf("%s|%d:%s", string(c.CanonicalSigningBytes()), len(sigHex), sigHex))))
+	sum := sha256.Sum256([]byte(fmt.Sprintf("%s|%d:%s", string(c.CanonicalSigningBytes()), len(sigHex), sigHex)))
+	return hex.EncodeToString(sum[:])
 }
 
 type IrreversibleDecisionGuard struct {
@@ -117,4 +118,29 @@ func EvaluateDeterministicTriage(v VitalSignsInput) error {
 		return ErrFailCloseTriggered
 	}
 	return nil
+}
+
+// OpenPatientPayload descifra y autentica el payload protegido bajo AX-001.
+func OpenPatientPayload(key32 []byte, ciphertext []byte, associatedData []byte) ([]byte, error) {
+	if len(key32) != 32 {
+		return nil, ErrEncryptionIntegrity
+	}
+	block, err := aes.NewCipher(key32)
+	if err != nil {
+		return nil, err
+	}
+	gcm, err := cipher.NewGCM(block)
+	if err != nil {
+		return nil, err
+	}
+	if len(ciphertext) < gcm.NonceSize() {
+		return nil, ErrEncryptionIntegrity
+	}
+	nonce := ciphertext[:gcm.NonceSize()]
+	enc := ciphertext[gcm.NonceSize():]
+	plain, err := gcm.Open(nil, nonce, enc, associatedData)
+	if err != nil {
+		return nil, ErrEncryptionIntegrity
+	}
+	return plain, nil
 }
