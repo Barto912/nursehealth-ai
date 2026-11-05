@@ -37,7 +37,6 @@ The platform enforces deterministic **Fail-Close** decision gates over probabili
 |         v                                                                         |
 |  [MedGemma Small (2B INT8) via LiteRT on Google Tensor G6 NPU (<300ms TTFT)]      |
 |         |                                                                         |
-|         +--> [Local SQLite + FTS5 Engram Store (100% Decentralized)]              |
 |         +--> [Titan M3 Security Enclave (Post-Quantum VerificationReceipt Sign)]  |
 |         +--> [On-Device Data Proxy (HIPAA Safe Harbor PII/PHI Censoring)]         |
 +-----------------------------------------+-----------------------------------------+
@@ -79,7 +78,6 @@ The platform enforces deterministic **Fail-Close** decision gates over probabili
 
 - **Hardware Target & Silicon:** Engineered for Google Pixel 11 Pro (Android 17) leveraging the Google Tensor G6 NPU and the Titan M3 hardware security enclave for cryptographic attestation (`VerificationReceipt`), maintaining backward compatibility with current Android StrongBox/Titan M2 Pixel deployments.
 - **Bounded Edge Model:** Executes a quantized MedGemma Small (2B INT8) runtime optimized via LiteRT (formerly TensorFlow Lite) strictly constrained to achieve <300ms Time-To-First-Token (TTFT) on invariant classification tasks while eliminating thermal throttling and battery drain during extended 12-hour nursing shifts.
-- **Decentralized Persistent Memory (Engram):** Structured atop a local SQLite + FTS5 engine. Preserves longitudinal clinical context and procedural history 100% offline in low-connectivity rural or suburban zones.
 - **Zero-Trust Edge Privacy Proxy:** An on-device Data Proxy automatically redacts and censors all 18 HIPAA Safe Harbor identifiers (PII/PHI) locally on the mobile device before any pseudonymized telemetry crosses the network boundary.
 
 ### Tier 2: Central Ingestion & Deterministic Fail-Close Engine
@@ -105,7 +103,6 @@ Built upon the **Health AI Developer Foundations** license, NurseHealth.ai imple
  ┌─────────────────────────────────────────────────────────────────────────┐
  │        PROPRIETARY INTELLECTUAL PROPERTY (Delaware C-Corp)              │
  │ ──► Deterministic Go Core (stdlib-only) + Fail-Close Triage Engine      │
- │ ──► Decentralized Persistent Memory Architecture (Engram / SQLite FTS5) │
  │ ──► Domain-Driven Design (DDD) Anti-Corruption Layer (ACL) & MCP Hooks  │
  └────────────────────────────────────┬────────────────────────────────────┘
                                       ▼
@@ -195,7 +192,6 @@ barto912/nursehealth-ai/
 │   └── gcp-proposal/                          # Google for Startups Cloud Program Technical Dossier
 │       ├── 01_architecture_overview.md
 │       ├── 02_panamerican_security_and_compliance.md
-│       ├── 03_edge_and_gentle_ai.md
 │       └── 04_multiregion_dr_and_failover.md
 ```
 

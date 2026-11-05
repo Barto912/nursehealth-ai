@@ -28,7 +28,7 @@ The first defense line never moves data across jurisdictions and is the cheapest
 | Level | Scope | Mechanism | RPO | RTO | Escalation rule |
 | --- | --- | --- | --- | --- | --- |
 | L0 zonal | Zone within `southamerica-west1` | Cloud SQL Enterprise Plus with synchronous multi-zone regional HA; Cloud Run with multi-zone redundancy and `min-instances = 2`; Global ALB with Outlier Detection ejecting sick instances | 0 (synchronous replica) | 60-120 s (SQL failover); compute in seconds | Escalate to L1 only if the whole region fails |
-| L1 regional | Full region `southamerica-west1` | Promotion of Cross-Region DR Replica in `southamerica-east1` plus ALB switch | Under 15-60 s WAL (effectively 0 via Engram Outbox at the edge) | 2-3 min | Edge covers the gap with RPO 0 |
+| L1 regional | Full region `southamerica-west1` | Promotion of Cross-Region DR Replica in `southamerica-east1` plus ALB switch | Under 15-60 s WAL (effectively 0 via deterministic local cache at the edge) | 2-3 min | Edge covers the gap with RPO 0 |
 | L2 sovereign edge | Patient home (Canning) | Local-first mode on Pixel 11 Pro: SQLite/FTS5 plus Outbox CMEK plus Merkle root; events signed with Titan M3 queued until reconnection | 0 (on device) | Under 300 ms | Escalate to L3 if edge also fails |
 | L3 veto | Everything down | Rule `FAIL_CLOSE_L0_EXHAUSTED`: never improvise; refuse clinical transactions without traceability | Not applicable | Not applicable | End of cascade |
 
@@ -45,7 +45,7 @@ Two geopolitical rings on [official Google Cloud regions](https://docs.cloud.goo
 ===============================================================================
                SOVEREIGN EDGE LAYER (LOCAL-FIRST / ZERO-TRUST EDGE)
  [Pixel 11 Pro: Tensor G6 + Titan M3 PQC + NurseGemma INT8 (Stanford SwiLA)]
- [Human Firewall (RuidoCheck AX-001..003) + Gentle Engram (SQLite/FTS5 + PHI
+ [Human Firewall (RuidoCheck AX-001..003) + sovereign data store (PostgreSQL (southamerica-west1)
                  filter + Outbox CMEK + Merkle root)]
 ===============================================================================
                                      |
@@ -85,9 +85,9 @@ Two geopolitical rings on [official Google Cloud regions](https://docs.cloud.goo
 
 | Data layer | Service and configuration | Inter-region replication | RPO | RTO | Justification for the committee |
 | --- | --- | --- | --- | --- | --- |
-| 1. Edge clinical memory (`pkg/engram`, pilot) | SQLite + FTS5 with CMEK on Pixel 11 Pro | Local Write-Ahead Outbox plus Merkle root until cloud ACK | 0 s (on device) | Under 300 ms local | Continuous clinical operation without internet; effective end-to-end RPO 0 on resend |
+| 1. Edge clinical memory (`pkg/governance`, pilot) | SQLite + FTS5 with CMEK on Pixel 11 Pro | Local Write-Ahead Outbox plus Merkle root until cloud ACK | 0 s (on device) | Under 300 ms local | Continuous clinical operation without internet; effective end-to-end RPO 0 on resend |
 | 2. Event bus | [Cloud Pub/Sub](https://docs.cloud.google.com/pubsub/docs/reliability-intro) with [message storage policy](https://docs.cloud.google.com/pubsub/docs/resource-location-restriction) | Synchronous replication across zones in `southamerica-west1` and `southamerica-east1` with CMEK | 0 s (acknowledged messages) | Under 5 s | Decouples Cloud Run Go services from the database during promotion |
-| 3. SHA-256 ledger and ATDP | [Cloud SQL Enterprise Plus](https://docs.cloud.google.com/sql/docs/postgres/intro-to-cloud-sql-disaster-recovery) primary `southamerica-west1` with [DR Replica](https://docs.cloud.google.com/sql/docs/postgres/replication/cross-region-replicas) in `southamerica-east1` | Regional synchronous HA plus continuous asynchronous WAL streaming | Effectively 0 s via Engram Outbox rehydration (15-60 s pure WAL) | 2-3 min (automated promotion) | Reduces monthly credit consumption by about 65-75% versus Spanner in MVP (100 to 10,000 pickups per month), 100% PostgreSQL compatible |
+| 3. SHA-256 ledger and ATDP | [Cloud SQL Enterprise Plus](https://docs.cloud.google.com/sql/docs/postgres/intro-to-cloud-sql-disaster-recovery) primary `southamerica-west1` with [DR Replica](https://docs.cloud.google.com/sql/docs/postgres/replication/cross-region-replicas) in `southamerica-east1` | Regional synchronous HA plus continuous asynchronous WAL streaming | Effectively 0 s via deterministic local cache rehydration (15-60 s pure WAL) | 2-3 min (automated promotion) | Reduces monthly credit consumption by about 65-75% versus Spanner in MVP (100 to 10,000 pickups per month), 100% PostgreSQL compatible |
 | 4. HL7 FHIR R4 and SNOMED CT interoperability | [Cloud Healthcare API](https://docs.cloud.google.com/healthcare-api/docs/regions) dual store plus [Cloud Storage Turbo Replication](https://docs.cloud.google.com/storage/docs/managing-turbo-replication) | Dual-Write from Go ACL via Pub/Sub to both FHIR stores plus dual-region bucket with [import/export](https://docs.cloud.google.com/healthcare-api/docs/how-tos/fhir-import-export) and [21-day PITR](https://docs.cloud.google.com/healthcare-api/docs/fhir-pitr) | Under 5 s (Pub/Sub) | Under 30 s (ACL switch) | Overcomes the regional limitation of Healthcare API without duplicating licensing |
 | 5. IoT GS1 telemetry and RWD | [BigQuery Managed Disaster Recovery](https://docs.cloud.google.com/bigquery/docs/managed-disaster-recovery) | Inter-region Turbo Replication of pharmacovigilance datasets (epsilon = 0.5) | Under 15 min | Under 1 min | Protects the commercial asset for laboratories against regional contingencies |
 

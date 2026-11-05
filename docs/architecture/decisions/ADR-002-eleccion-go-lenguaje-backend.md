@@ -13,7 +13,7 @@ NurseHealth-AI requiere un lenguaje backend que cumpla con los siguientes requis
 - Binarios estáticos para despliegue simple en entornos sanitarios con restricciones de infraestructura
 - Integración robusta con PostgreSQL (driver maduro, connection pooling, transacciones ACID)
 - Equipo pequeño en fase MVP que requiere productividad sin sacrificar rendimiento
-- Filosofía "Gentle Care" que prioriza simplicidad operacional y mantenibilidad a largo plazo
+- Filosofía de Seguridad Sanitaria (v0.6.0-defensa-civil), que prioriza simplicidad operacional y mantenibilidad a largo plazo
 
 El sistema procesa eventos cognitivos de forma síncrona (sin colas de mensajes externas en MVP), por lo que el tiempo de respuesta del backend impacta directamente en la experiencia del profesional de enfermería.
 

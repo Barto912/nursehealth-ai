@@ -15,7 +15,7 @@ Un repositorio CRUD tradicional (Create-Read-Update-Delete) introduce riesgos in
 - Posibilidad técnica de modificar eventos cognitivos post-escritura, comprometiendo integridad forense
 - DELETE físico elimina evidencia de decisiones clínicas previas
 - Auditorías externas requieren garantía de que registros no han sido alterados
-- Filosofía "Gentle Care" exige que el profesional pueda confiar en que el historial de asistencias IA es fiel a lo ocurrido
+- Filosofía de Seguridad Sanitaria (v0.6.0-defensa-civil), exige que el profesional pueda confiar en que el historial de asistencias IA es fiel a lo ocurrido
 
 El backend en Go debe persistir estos eventos en PostgreSQL con garantías de inmutabilidad a nivel de aplicación, complementando (no reemplazando) las constraints de integridad de la base de datos.
 

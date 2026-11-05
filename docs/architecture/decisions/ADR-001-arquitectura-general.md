@@ -8,7 +8,7 @@ Aceptado
 
 NurseHealth-AI requiere una arquitectura que garantice trazabilidad completa de decisiones clínicas asistidas por IA, manteniendo cumplimiento normativo sanitario (HIPAA/GDPR) y preservando la autonomía del profesional de enfermería.
 
-El sistema debe operar como herramienta asistencial de apoyo (filosofía "Gentle Care"), nunca como sistema autónomo de toma de decisiones clínicas.
+El sistema debe operar como herramienta asistencial de apoyo (Filosofía de Seguridad Sanitaria (v0.6.0-defensa-civil),), nunca como sistema autónomo de toma de decisiones clínicas.
 
 Se necesita un backend que procese eventos cognitivos (triage, alertas, recomendaciones) con latencia predecible y auditabilidad total.
 
