@@ -3,6 +3,9 @@ name: "Auditoría de Seguridad Extrema (Defensa Civil)"
 on:
   workflow_dispatch: # Permite ejecutar el análisis manualmente con un botón
 
+permissions:
+  contents: read
+
 jobs:
   security-sweep:
     runs-on: ubuntu-latest
