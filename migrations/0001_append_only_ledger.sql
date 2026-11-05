@@ -36,7 +36,7 @@ BEGIN
     canonical_string := format('NH_DC_V1|%s:%s|%s:%s|%s:%s|%s:%s|%s:%s|%s:%s|%s:%s|%s:%s|%s:%s|%s:%s',
         length(NEW.event_id::text), NEW.event_id::text, length(NEW.axiom_code), NEW.axiom_code,
         length(NEW.actor_id), NEW.actor_id, length(NEW.public_key_id), NEW.public_key_id,
-        length(NEW.nonce_hex), NEW.nonce_hex, length(extract(epoch from NEW.signed_at_utc)::bigint::text), extract(epoch from NEW.signed_at_utc)::bigint::text,
+        length(NEW.nonce_hex), NEW.nonce_hex, length(floor(extract(epoch from NEW.signed_at_utc))::bigint::text), floor(extract(epoch from NEW.signed_at_utc))::bigint::text,
         length(payload_hex), payload_hex, length(COALESCE(NEW.disagreement_note, '')), COALESCE(NEW.disagreement_note, ''), length(NEW.prev_hash), NEW.prev_hash);
     NEW.record_hash := encode(digest(canonical_string || '|' || length(sig_hex)::text || ':' || sig_hex, 'sha256'), 'hex');
     RETURN NEW;
